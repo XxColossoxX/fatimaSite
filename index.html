@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Fatima Costa - Cuidadora de idosos em Itatiba-SP com atendimento humanizado, domiciliar e profissional." />
+  <title>Fatima Costa | Cuidadora de Idosos em Itatiba-SP</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            base: "#f4f1ea",
+            ink: "#30423d",
+            brand: "#5d8e80",
+            brandSoft: "#79a99a",
+            sand: "#bca690"
+          },
+          fontFamily: {
+            body: ["Sora", "sans-serif"],
+            title: ["Cormorant Garamond", "serif"]
+          },
+          boxShadow: {
+            soft: "0 20px 45px rgba(24, 54, 51, 0.12)"
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background:
+        radial-gradient(circle at 10% 10%, rgba(188, 166, 144, 0.26), transparent 34%),
+        radial-gradient(circle at 94% 5%, rgba(121, 169, 154, 0.2), transparent 41%),
+        #f4f1ea;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(26px) scale(0.98);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.in-view {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    #topo {
+      transition: box-shadow 0.28s ease, background-color 0.28s ease;
+    }
+
+    #topo.is-scrolled {
+      box-shadow: 0 12px 30px rgba(48, 66, 61, 0.16);
+      background-color: rgba(244, 241, 234, 0.96);
+    }
+
+    .mobile-menu {
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+      pointer-events: none;
+      transform: translateY(-10px) scale(0.98);
+      transition: max-height 0.34s ease, opacity 0.26s ease, transform 0.26s ease;
+    }
+
+    .mobile-menu.open {
+      max-height: 420px;
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0) scale(1);
+    }
+
+    .menu-toggle-icon {
+      transition: transform 0.24s ease;
+    }
+
+    .menu-toggle.open .menu-toggle-icon {
+      transform: rotate(90deg);
+    }
+
+    .dev-panel {
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+      transform: translateY(-6px);
+      transition: max-height 0.35s ease, opacity 0.25s ease, transform 0.25s ease;
+    }
+
+    .dev-panel.open {
+      max-height: 260px;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .floating-pulse {
+      animation: pulseRing 2.2s ease-out infinite;
+    }
+
+    .card-hover {
+      transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
+    }
+
+    .card-hover:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 18px 40px rgba(48, 66, 61, 0.14);
+      border-color: rgba(93, 142, 128, 0.35);
+    }
+
+    .faq-item .faq-content {
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(-8px);
+      transition: max-height 0.42s ease, opacity 0.32s ease, transform 0.32s ease;
+    }
+
+    .faq-item.open .faq-content {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .faq-item .faq-icon {
+      transition: transform 0.28s ease;
+    }
+
+    .faq-item.open .faq-icon {
+      transform: rotate(45deg);
+    }
+
+    @media (min-width: 768px) {
+      .mobile-menu {
+        max-height: none;
+        opacity: 1;
+        overflow: visible;
+        pointer-events: auto;
+        transform: none;
+      }
+    }
+
+    @keyframes pulseRing {
+      0% {
+        box-shadow: 0 0 0 0 rgba(31, 122, 103, 0.55);
+      }
+      80% {
+        box-shadow: 0 0 0 18px rgba(31, 122, 103, 0);
+      }
+      100% {
+        box-shadow: 0 0 0 0 rgba(31, 122, 103, 0);
+      }
+    }
+  </style>
+</head>
+<body class="font-body text-ink antialiased overflow-x-hidden">
+  <div class="fixed top-0 left-0 h-1 w-full bg-black/5 z-[80]" aria-hidden="true">
+    <span id="scrollBar" class="block h-full w-0 bg-gradient-to-r from-brand to-sand"></span>
+  </div>
+
+  <header id="topo" class="sticky top-0 z-50 border-b border-ink/10 bg-base/85 backdrop-blur-xl">
+    <div class="mx-auto flex min-h-20 w-[92vw] max-w-6xl items-center justify-between">
+      <a href="#topo" class="flex items-center gap-3" aria-label="Ir para o topo">
+        <span class="grid h-11 w-11 place-items-center rounded-xl bg-gradient-to-br from-brand to-brandSoft text-sm font-bold text-white">FC</span>
+        <div>
+          <span class="block text-sm font-bold">Fatima Costa ou só a logo</span>
+          <span class="hidden text-xs font-semibold text-ink/70 md:block">Cuidadora de Idosos em Itatiba-SP</span>
+        </div>
+      </a>
+
+      <button id="menuToggle" class="menu-toggle inline-flex h-11 w-11 items-center justify-center rounded-lg border border-ink/10 bg-white/70 transition hover:bg-white md:hidden" aria-label="Abrir menu" aria-expanded="false" aria-controls="mainMenu">
+        <svg xmlns="http://www.w3.org/2000/svg" class="menu-toggle-icon h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 7h16M4 12h16M4 17h16" />
+        </svg>
+      </button>
+
+      <nav id="mainMenu" class="mobile-menu absolute left-4 right-4 top-20 flex flex-col gap-2 rounded-2xl border border-ink/10 bg-white/95 p-4 shadow-soft md:static md:flex md:flex-row md:items-center md:gap-6 md:border-0 md:bg-transparent md:p-0 md:shadow-none">
+        <a href="#servicos" class="rounded-lg px-2 py-1 text-sm font-semibold text-ink/80 transition hover:bg-brand/10 hover:text-brand md:p-0 md:hover:bg-transparent">Servicos</a>
+        <a href="#diferenciais" class="rounded-lg px-2 py-1 text-sm font-semibold text-ink/80 transition hover:bg-brand/10 hover:text-brand md:p-0 md:hover:bg-transparent">Diferenciais</a>
+        <a href="#faq" class="rounded-lg px-2 py-1 text-sm font-semibold text-ink/80 transition hover:bg-brand/10 hover:text-brand md:p-0 md:hover:bg-transparent">FAQ</a>
+        <a href="#contato" class="mt-1 inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-brand to-brandSoft px-4 py-2 text-sm font-bold text-white shadow-lg shadow-brand/20 transition hover:-translate-y-0.5 hover:brightness-105 md:mt-0">Agendar Conversa</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="pb-16 pt-8 sm:pt-10">
+      <div class="mx-auto grid w-[92vw] max-w-6xl gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
+        <div class="reveal">
+          <p class="mb-4 inline-flex rounded-full border border-brand/25 bg-white/70 px-4 py-1 text-xs font-bold uppercase tracking-wide text-brand">Cuidado profissional em Itatiba-SP</p>
+          <h1 class="font-title text-4xl leading-tight sm:text-5xl lg:text-6xl">Cuidado de idosos com presença, afeto e responsabilidade.</h1>
+          <p class="mt-5 max-w-2xl text-sm leading-relaxed text-ink/70 sm:text-base">
+            Fatima Costa oferece atendimento domiciliar para idosos com foco em segurança, rotina organizada e bem-estar emocional.
+            Um acompanhamento confiável para trazer mais tranquilidade para toda a família.
+          </p>
+          <div class="mt-7 flex flex-wrap gap-3">
+            <a href="https://wa.me/5511992349916?text=Ola%20Fatima%2C%20gostaria%20de%20informacoes%20sobre%20cuidado%20de%20idosos." target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-brand to-brandSoft px-5 py-3 text-sm font-bold text-white shadow-lg shadow-brand/25 transition hover:-translate-y-0.5 hover:brightness-105">Falar no WhatsApp</a>
+            <a href="#servicos" class="inline-flex items-center justify-center rounded-xl border border-brand/30 bg-white/80 px-5 py-3 text-sm font-bold text-brand transition hover:bg-white">Ver Servicos</a>
+          </div>
+        </div>
+
+        <aside class="reveal rounded-3xl border border-white/70 bg-white/75 p-6 shadow-soft backdrop-blur">
+          <h2 class="font-title text-3xl leading-tight">Compromisso diário com qualidade de vida</h2>
+          <p class="mt-3 text-sm text-ink/70">Cada cuidado é pensado para manter o idoso ativo, confortável e assistido com dignidade em todas as etapas da rotina.</p>
+          <div class="mt-6 grid gap-3 sm:grid-cols-3 lg:grid-cols-1 xl:grid-cols-3">
+            <div class="rounded-2xl border border-ink/10 bg-white p-3">
+              <strong data-counter="5" class="block text-2xl font-extrabold text-brand">0</strong>
+              <span class="text-xs font-semibold text-ink/65">Anos de experiência</span>
+            </div>
+            <div class="rounded-2xl border border-ink/10 bg-white p-3">
+              <strong data-counter="20" class="block text-2xl font-extrabold text-brand">0</strong>
+              <span class="text-xs font-semibold text-ink/65">Famílias atendidas</span>
+            </div>
+            <div class="rounded-2xl border border-ink/10 bg-white p-3">
+              <strong data-counter="100" class="block text-2xl font-extrabold text-brand">0</strong>
+              <span class="text-xs font-semibold text-ink/65">% de satisfação</span>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="pb-16" id="servicos">
+      <div class="mx-auto w-[92vw] max-w-6xl">
+        <div class="reveal mb-8 max-w-3xl">
+          <p class="mb-3 inline-flex rounded-full border border-brand/20 bg-white/70 px-4 py-1 text-xs font-bold uppercase tracking-wide text-brand">Serviços</p>
+          <h2 class="font-title text-4xl leading-tight">Assistência completa para o dia a dia do idoso</h2>
+        </div>
+
+        <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          <article class="card-hover reveal rounded-3xl border border-white/80 bg-white/80 p-5 shadow-soft">
+            <h3 class="text-lg font-bold">Cuidados pessoais</h3>
+            <p class="mt-2 text-sm text-ink/70">Apoio em higiene, banho, troca de roupas, alimentação e conforto diário.</p>
+          </article>
+          <article class="card-hover reveal rounded-3xl border border-white/80 bg-white/80 p-5 shadow-soft">
+            <h3 class="text-lg font-bold">Companhia e rotina ativa</h3>
+            <p class="mt-2 text-sm text-ink/70">Conversas, leitura, jogos e estímulos para manter autonomia e bem-estar emocional.</p>
+          </article>
+          <article class="card-hover reveal rounded-3xl border border-white/80 bg-white/80 p-5 shadow-soft">
+            <h3 class="text-lg font-bold">Controle de medicação</h3>
+            <p class="mt-2 text-sm text-ink/70">Organização de horários conforme orientação médica e monitoramento constante.</p>
+          </article>
+          <article class="card-hover reveal rounded-3xl border border-white/80 bg-white/80 p-5 shadow-soft">
+            <h3 class="text-lg font-bold">Acompanhamento em consultas</h3>
+            <p class="mt-2 text-sm text-ink/70">Suporte em saídas, exames e consultas para mais segurança durante deslocamentos.</p>
+          </article>
+          <article class="card-hover reveal rounded-3xl border border-white/80 bg-white/80 p-5 shadow-soft">
+            <h3 class="text-lg font-bold">Apoio para famílias</h3>
+            <p class="mt-2 text-sm text-ink/70">Comunicação clara sobre evolução da rotina e orientações para o cuidado em casa.</p>
+          </article>
+          <article class="card-hover reveal rounded-3xl border border-white/80 bg-white/80 p-5 shadow-soft">
+            <h3 class="text-lg font-bold">Atendimento flexível</h3>
+            <p class="mt-2 text-sm text-ink/70">Planos avulsos, periódicos ou contínuos, com horários adaptados à sua necessidade.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="diferenciais" class="bg-white/60 py-16">
+      <div class="mx-auto grid w-[92vw] max-w-6xl gap-5 lg:grid-cols-2">
+        <article class="card-hover reveal rounded-3xl border border-ink/10 bg-white p-6 shadow-soft">
+          <p class="mb-2 text-xs font-bold uppercase tracking-wide text-brand">Diferenciais</p>
+          <h2 class="font-title text-4xl leading-tight">Profissionalismo com acolhimento humano</h2>
+          <p class="mt-3 text-sm text-ink/70">O atendimento combina técnica, observação e respeito pelo ritmo da pessoa idosa, com foco em conforto e dignidade.</p>
+          <ul class="mt-4 space-y-2 text-sm text-ink/75">
+            <li>- Postura ética, discreta e pontual</li>
+            <li>- Plano de cuidado adaptado para cada família</li>
+            <li>- Relato contínuo de evolução e necessidades</li>
+            <li>- Presença ativa para reduzir riscos domésticos</li>
+          </ul>
+        </article>
+
+        <article class="card-hover reveal rounded-3xl border border-ink/10 bg-white p-6 shadow-soft">
+          <p class="mb-3 text-xs font-bold uppercase tracking-wide text-brand">Como funciona</p>
+          <div class="space-y-4 text-sm text-ink/75">
+            <div>
+              <h3 class="font-semibold text-ink">1. Conversa inicial</h3>
+              <p>Entendimento da rotina, histórico e expectativas da família.</p>
+            </div>
+            <div>
+              <h3 class="font-semibold text-ink">2. Plano personalizado</h3>
+              <p>Definição de atividades, horários e prioridades de cuidado.</p>
+            </div>
+            <div>
+              <h3 class="font-semibold text-ink">3. Acompanhamento contínuo</h3>
+              <p>Cuidados diários, ajustes de plano e comunicação permanente.</p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="py-16">
+      <div class="mx-auto w-[92vw] max-w-6xl">
+        <div class="reveal mb-8 max-w-3xl">
+          <p class="mb-3 inline-flex rounded-full border border-brand/20 bg-white/70 px-4 py-1 text-xs font-bold uppercase tracking-wide text-brand">Área de atendimento</p>
+          <h2 class="font-title text-4xl leading-tight">Atendimento em Itatiba-SP e região</h2>
+          <p class="mt-3 text-sm text-ink/70">Fatima Costa atende em domicílio em Itatiba-SP, com possibilidade de deslocamento para bairros e cidades próximas mediante avaliação de agenda.</p>
+        </div>
+        <div class="grid gap-4 md:grid-cols-3">
+          <article class="card-hover reveal rounded-3xl border border-white/80 bg-white/85 p-5 shadow-soft">
+            <h3 class="font-bold">Cidade base</h3>
+            <p class="mt-2 text-sm text-ink/70">Itatiba - São Paulo</p>
+          </article>
+          <article class="card-hover reveal rounded-3xl border border-white/80 bg-white/85 p-5 shadow-soft">
+            <h3 class="font-bold">Horários</h3>
+            <p class="mt-2 text-sm text-ink/70">Segunda a sábado, com plantão sob consulta.</p>
+          </article>
+          <article class="card-hover reveal rounded-3xl border border-white/80 bg-white/85 p-5 shadow-soft">
+            <h3 class="font-bold">Contato rápido</h3>
+            <p class="mt-2 text-sm text-ink/70">Resposta via WhatsApp para dúvidas e orçamentos.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="depoimentos" class="bg-white/60 py-16">
+      <div class="mx-auto w-[92vw] max-w-6xl">
+        <div class="reveal mb-8 max-w-3xl">
+          <p class="mb-3 inline-flex rounded-full border border-brand/20 bg-white/70 px-4 py-1 text-xs font-bold uppercase tracking-wide text-brand">Depoimentos</p>
+          <h2 class="font-title text-4xl leading-tight">Confiança construída no cuidado diário</h2>
+        </div>
+        <div class="grid gap-4 md:grid-cols-3">
+          <blockquote class="card-hover reveal rounded-3xl border border-ink/10 bg-white p-5 shadow-soft">
+            <p class="text-sm text-ink/70">"A Fatima trouxe tranquilidade para nossa família. Atendimento impecável e muito humano."</p>
+            <cite class="mt-4 block text-sm font-bold not-italic">Família Souza</cite>
+          </blockquote>
+          <blockquote class="card-hover reveal rounded-3xl border border-ink/10 bg-white p-5 shadow-soft">
+            <p class="text-sm text-ink/70">"Profissional atenciosa, pontual e cuidadosa. Nossa rotina ficou mais organizada e segura."</p>
+            <cite class="mt-4 block text-sm font-bold not-italic">Família Nascimento</cite>
+          </blockquote>
+          <blockquote class="card-hover reveal rounded-3xl border border-ink/10 bg-white p-5 shadow-soft">
+            <p class="text-sm text-ink/70">"Recomendo com confiança. Meu pai se sente acolhido e bem assistido todos os dias."</p>
+            <cite class="mt-4 block text-sm font-bold not-italic">Família Almeida</cite>
+          </blockquote>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq" class="py-16">
+      <div class="mx-auto w-[92vw] max-w-4xl">
+        <div class="reveal mb-8 text-center">
+          <p class="mb-3 inline-flex rounded-full border border-brand/20 bg-white/70 px-4 py-1 text-xs font-bold uppercase tracking-wide text-brand">FAQ</p>
+          <h2 class="font-title text-4xl leading-tight">Perguntas frequentes</h2>
+        </div>
+        <div class="space-y-3">
+          <article class="faq-item open reveal rounded-2xl border border-ink/10 bg-white p-4 shadow-soft transition hover:border-brand/30 hover:bg-white/95">
+            <button type="button" class="faq-trigger flex w-full items-center justify-between gap-4 text-left" aria-expanded="true">
+              <span class="text-sm font-bold">Como funciona o primeiro atendimento?</span>
+              <span class="faq-icon inline-flex h-7 w-7 items-center justify-center rounded-full border border-ink/20 text-lg leading-none">+</span>
+            </button>
+            <div class="faq-content">
+              <div>
+                <p class="pt-3 text-sm text-ink/70">É realizada uma conversa inicial para entender rotina, necessidades e definir o formato ideal do cuidado.</p>
+              </div>
+            </div>
+          </article>
+          <article class="faq-item reveal rounded-2xl border border-ink/10 bg-white p-4 shadow-soft transition hover:border-brand/30 hover:bg-white/95">
+            <button type="button" class="faq-trigger flex w-full items-center justify-between gap-4 text-left" aria-expanded="false">
+              <span class="text-sm font-bold">Atende somente idosos acamados?</span>
+              <span class="faq-icon inline-flex h-7 w-7 items-center justify-center rounded-full border border-ink/20 text-lg leading-none">+</span>
+            </button>
+            <div class="faq-content">
+              <div>
+                <p class="pt-3 text-sm text-ink/70">Não. O atendimento inclui idosos independentes, semi dependentes ou com necessidade de apoio contínuo.</p>
+              </div>
+            </div>
+          </article>
+          <article class="faq-item reveal rounded-2xl border border-ink/10 bg-white p-4 shadow-soft transition hover:border-brand/30 hover:bg-white/95">
+            <button type="button" class="faq-trigger flex w-full items-center justify-between gap-4 text-left" aria-expanded="false">
+              <span class="text-sm font-bold">Existe plano mensal?</span>
+              <span class="faq-icon inline-flex h-7 w-7 items-center justify-center rounded-full border border-ink/20 text-lg leading-none">+</span>
+            </button>
+            <div class="faq-content">
+              <div>
+                <p class="pt-3 text-sm text-ink/70">Sim. Existem opções avulsas e mensais, com carga horária ajustada para cada família.</p>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contato" class="pb-16">
+      <div class="mx-auto w-[92vw] max-w-6xl">
+        <article class="reveal rounded-[2rem] border border-ink/10 bg-gradient-to-br from-white to-white/80 p-7 shadow-soft sm:p-10">
+          <div class="mb-8 text-center">
+            <p class="mb-2 text-xs font-bold uppercase tracking-wide text-brand">Contato</p>
+            <h2 class="font-title text-4xl leading-tight">Fale com Fatima Costa e receba orientação personalizada</h2>
+            <p class="mx-auto mt-3 max-w-2xl text-sm text-ink/70">Preencha os dados para gerar uma mensagem pronta e enviar direto para o WhatsApp. Atendimento em Itatiba-SP e região.</p>
+          </div>
+
+          <div class="grid gap-5 lg:grid-cols-2">
+            <form id="whatsappForm" class="card-hover rounded-3xl border border-ink/10 bg-white p-5 shadow-soft">
+              <div class="grid gap-3 sm:grid-cols-2">
+                <label class="text-sm font-semibold text-ink/80">
+                  Nome
+                  <input id="nome" name="nome" required type="text" class="mt-1 w-full rounded-xl border border-ink/15 px-3 py-2 text-sm outline-none transition focus:border-brand" placeholder="Seu nome" />
+                </label>
+                <label class="text-sm font-semibold text-ink/80">
+                  Telefone
+                  <input id="telefone" name="telefone" type="tel" class="mt-1 w-full rounded-xl border border-ink/15 px-3 py-2 text-sm outline-none transition focus:border-brand" placeholder="(11) 99999-9999" />
+                </label>
+                <label class="text-sm font-semibold text-ink/80">
+                  Parentesco
+                  <input id="parentesco" name="parentesco" type="text" class="mt-1 w-full rounded-xl border border-ink/15 px-3 py-2 text-sm outline-none transition focus:border-brand" placeholder="Filho(a), neto(a)..." />
+                </label>
+                <label class="text-sm font-semibold text-ink/80">
+                  Periodo desejado
+                  <select id="periodo" name="periodo" class="mt-1 w-full rounded-xl border border-ink/15 px-3 py-2 text-sm outline-none transition focus:border-brand">
+                    <option>Manha</option>
+                    <option>Tarde</option>
+                    <option>Noite</option>
+                    <option>24 horas</option>
+                    <option>A combinar</option>
+                  </select>
+                </label>
+              </div>
+
+              <label class="mt-3 block text-sm font-semibold text-ink/80">
+                Mensagem
+                <textarea id="mensagem" name="mensagem" rows="4" class="mt-1 w-full rounded-xl border border-ink/15 px-3 py-2 text-sm outline-none transition focus:border-brand" placeholder="Conte um pouco da necessidade da familia."></textarea>
+              </label>
+
+              <div class="mt-4 flex flex-wrap gap-3">
+                <button type="submit" class="inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-brand to-brandSoft px-5 py-3 text-sm font-bold text-white shadow-lg shadow-brand/25 transition hover:-translate-y-0.5 hover:brightness-105">Enviar no WhatsApp</button>
+              </div>
+            </form>
+
+            <aside class="card-hover rounded-3xl border border-ink/10 bg-white p-5 shadow-soft">
+              <h3 class="text-lg font-bold">Atendimento em Itatiba-SP</h3>
+              <p class="mt-2 text-sm text-ink/70">Região central e bairros próximos, com deslocamento sob consulta para cidades vizinhas.</p>
+              <div class="mt-4 overflow-hidden rounded-2xl border border-ink/10">
+                <iframe
+                  title="Mapa de Itatiba-SP"
+                  src="https://www.google.com/maps?q=Itatiba%20SP&output=embed"
+                  width="100%"
+                  height="280"
+                  style="border:0;"
+                  loading="lazy"
+                  referrerpolicy="no-referrer-when-downgrade"
+                ></iframe>
+              </div>
+              <p class="mt-3 text-xs font-semibold text-ink/60">WhatsApp direto: (11) 99234-9916</p>
+            </aside>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-ink/10 bg-[#5d776f] py-10 text-white/90">
+    <div class="mx-auto grid w-[92vw] max-w-6xl gap-8 md:grid-cols-2 lg:grid-cols-4">
+      <div>
+        <div class="flex items-center gap-3">
+          <span class="grid h-10 w-10 place-items-center rounded-xl bg-white/20 text-sm font-bold text-white">FC</span>
+          <p class="font-semibold">Fatima Costa</p>
+        </div>
+        <p class="mt-3 text-sm text-white/70">Cuidadora de idosos com atendimento profissional, acolhedor e focado na dignidade da pessoa idosa.</p>
+      </div>
+      <div>
+        <h3 class="text-sm font-bold uppercase tracking-wide text-white">Atendimento</h3>
+        <ul class="mt-3 space-y-2 text-sm text-white/75">
+          <li>Itatiba-SP</li>
+          <li>Atendimento domiciliar</li>
+          <li>Seg a Sab - horários flexíveis</li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="text-sm font-bold uppercase tracking-wide text-white">Contato</h3>
+        <ul class="mt-3 space-y-2 text-sm text-white/75">
+          <li><a href="https://wa.me/5511992349916" target="_blank" rel="noopener noreferrer" class="transition hover:text-white">WhatsApp: (11) 99234-9916</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="text-sm font-bold uppercase tracking-wide text-white">Navegação</h3>
+        <ul class="mt-3 space-y-2 text-sm text-white/75">
+          <li><a href="#servicos" class="transition hover:text-white">Serviços</a></li>
+          <li><a href="#diferenciais" class="transition hover:text-white">Diferenciais</a></li>
+          <li><a href="#faq" class="transition hover:text-white">Perguntas frequentes</a></li>
+          <li><a href="#topo" class="transition hover:text-white">Voltar ao topo</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="mx-auto mt-8 w-[92vw] max-w-6xl border-t border-white/15 pt-5 text-center text-xs text-white/65">
+      <div class="flex flex-wrap items-center justify-center gap-2">
+        <button id="devInfoToggle" type="button" aria-expanded="false" aria-controls="devPanel" class="inline-flex h-5 w-5 items-center justify-center rounded-full border border-white/50 text-[11px] font-bold text-white transition hover:bg-white/15">!</button>
+        <p>Desenvolvido por Pedro Henrique Ribeiro.</p>
+      </div>
+      <div id="devPanel" class="dev-panel mx-auto mt-2 w-full max-w-xl">
+        <form id="devContactForm" class="mx-auto rounded-xl border border-white/20 bg-white/10 p-3 text-left">
+          <label class="block text-[11px] font-semibold text-white/90">
+            Seu nome
+            <input id="devNome" type="text" class="mt-1 w-full rounded-lg border border-white/25 bg-white/90 px-2.5 py-1.5 text-xs text-ink outline-none" placeholder="Digite seu nome" />
+          </label>
+          <label class="mt-2 block text-[11px] font-semibold text-white/90">
+            Mensagem
+            <input id="devMensagem" type="text" class="mt-1 w-full rounded-lg border border-white/25 bg-white/90 px-2.5 py-1.5 text-xs text-ink outline-none" value="Olá Pedro Henrique Ribeiro, vim pelo site e gostaria de falar sobre desenvolvimento." />
+          </label>
+          <button type="submit" class="mt-3 inline-flex items-center justify-center rounded-lg bg-white px-3 py-1.5 text-xs font-bold text-[#30423d] transition hover:bg-white/90">Enviar para WhatsApp do Desenvolvedor</button>
+        </form>
+      </div>
+      <p>2026 Fatima Conceição Diniz Martins da Costa - Cuidadora de Idosos em Itatiba-SP. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/5511992349916?text=Ola%20Fatima%2C%20vim%20pelo%20site%20e%20gostaria%20de%20informacoes." target="_blank" rel="noopener noreferrer" aria-label="Conversar no WhatsApp" class="floating-pulse fixed bottom-5 right-4 z-[75] inline-flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-xl shadow-black/20 transition hover:scale-105 hover:brightness-105 sm:right-6">
+    <img src="https://img.icons8.com/ios/100/FFFFFF/whatsapp--v1.png" alt="WhatsApp" class="h-7 w-7 object-contain" width="100" height="100" />
+  </a>
+
+  <script src="script.js"></script>
+</body>
+</html>
