@@ -184,6 +184,7 @@ if (whatsappForm) {
   });
 }
 
+// Animação de scroll com GSAP ao navegar para seções
 if (anchorLinks.length > 0) {
   anchorLinks.forEach((link) => {
     link.addEventListener('click', (event) => {
@@ -199,7 +200,21 @@ if (anchorLinks.length > 0) {
       const extraOffset = 26;
       const y = target.getBoundingClientRect().top + window.pageYOffset - headerOffset - extraOffset;
 
-      window.scrollTo({ top: Math.max(y, 0), behavior: 'smooth' });
+      // Anima scroll com GSAP
+      gsap.to(window, {
+        duration: 0.8,
+        scrollTo: { y: Math.max(y, 0), autoKill: true },
+        ease: "power2.inOut",
+        onComplete: () => {
+          // Re-anima elementos reveal da seção alvo quando termina o scroll
+          const sectionRevealElements = target.querySelectorAll('.reveal');
+          sectionRevealElements.forEach((el) => {
+            el.classList.remove('in-view');
+            revealObserver.observe(el);
+          });
+        }
+      });
+
       history.pushState(null, '', hash);
     });
   });
@@ -228,3 +243,56 @@ if (devContactForm) {
     window.open(url, '_blank', 'noopener,noreferrer');
   });
 }
+
+// Funções do modal do desenvolvedor
+function openContactDeveloperModal() {
+  const modal = document.getElementById('contactDeveloperModal');
+  if (modal) {
+    modal.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+  }
+}
+
+function closeContactDeveloperModal() {
+  const modal = document.getElementById('contactDeveloperModal');
+  if (modal) {
+    modal.classList.add('hidden');
+    document.body.style.overflow = '';
+  }
+}
+
+function handleDeveloperContact(event) {
+  event.preventDefault();
+  const subject = (document.getElementById('developerSubject')?.value || '').trim();
+  
+  if (!subject) {
+    alert('Por favor, preencha o assunto');
+    return;
+  }
+
+  const texto = encodeURIComponent(`Olá Pedro! Vim pelo site. Assunto: ${subject}`);
+  const url = `https://wa.me/5511992349916?text=${texto}`;
+  
+  closeContactDeveloperModal();
+  document.getElementById('contactDeveloperForm').reset();
+  window.open(url, '_blank', 'noopener,noreferrer');
+}
+
+// Fechar modal ao clicar no backdrop
+document.addEventListener('DOMContentLoaded', () => {
+  const modal = document.getElementById('contactDeveloperModal');
+  if (modal) {
+    modal.addEventListener('click', (event) => {
+      if (event.target === modal) {
+        closeContactDeveloperModal();
+      }
+    });
+  }
+
+  // Fechar modal com ESC
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+      closeContactDeveloperModal();
+    }
+  });
+});

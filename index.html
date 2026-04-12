@@ -3,12 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Fatima Costa - Cuidadora de idosos em Itatiba-SP com atendimento humanizado, domiciliar e profissional." />
-  <title>Fatima Costa | Cuidadora de Idosos em Itatiba-SP</title>
+  <meta name="description" content="Conce Care - Cuidadora de idosos em Itatiba-SP com atendimento humanizado, domiciliar e profissional." />
+  <title>Conce Care | Cuidadora de Idosos em Itatiba-SP</title>
+  <link rel="icon" type="image/png" href="img/logo3.png">
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGkJpeuKQ6XLRfqpZjSuuYQvp1VSqNnu7nUlwXchNErvX2zLW5UZzYw+fJ1yFS27yTtEqrqAtwGmozSAg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
   <script>
     tailwind.config = {
       theme: {
@@ -157,6 +161,21 @@
         box-shadow: 0 0 0 0 rgba(31, 122, 103, 0);
       }
     }
+
+    @keyframes scaleIn {
+      from {
+        opacity: 0;
+        transform: scale(0.92);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .animate-scale-in {
+      animation: scaleIn 0.3s ease-out;
+    }
   </style>
 </head>
 <body class="font-body text-ink antialiased overflow-x-hidden">
@@ -166,12 +185,8 @@
 
   <header id="topo" class="sticky top-0 z-50 border-b border-ink/10 bg-base/85 backdrop-blur-xl">
     <div class="mx-auto flex min-h-20 w-[92vw] max-w-6xl items-center justify-between">
-      <a href="#topo" class="flex items-center gap-3" aria-label="Ir para o topo">
-        <span class="grid h-11 w-11 place-items-center rounded-xl bg-gradient-to-br from-brand to-brandSoft text-sm font-bold text-white">FC</span>
-        <div>
-          <span class="block text-sm font-bold">Fatima Costa ou só a logo</span>
-          <span class="hidden text-xs font-semibold text-ink/70 md:block">Cuidadora de Idosos em Itatiba-SP</span>
-        </div>
+      <a href="#topo" class="flex items-center" aria-label="Ir para o topo">
+        <img src="img/logo3.png" alt="Logo Fatima Costa" class="h-11 w-auto" />
       </a>
 
       <button id="menuToggle" class="menu-toggle inline-flex h-11 w-11 items-center justify-center rounded-lg border border-ink/10 bg-white/70 transition hover:bg-white md:hidden" aria-label="Abrir menu" aria-expanded="false" aria-controls="mainMenu">
@@ -195,8 +210,8 @@
         <div class="reveal">
           <p class="mb-4 inline-flex rounded-full border border-brand/25 bg-white/70 px-4 py-1 text-xs font-bold uppercase tracking-wide text-brand">Cuidado profissional em Itatiba-SP</p>
           <h1 class="font-title text-4xl leading-tight sm:text-5xl lg:text-6xl">Cuidado de idosos com presença, afeto e responsabilidade.</h1>
-          <p class="mt-5 max-w-2xl text-sm leading-relaxed text-ink/70 sm:text-base">
-            Fatima Costa oferece atendimento domiciliar para idosos com foco em segurança, rotina organizada e bem-estar emocional.
+          <p class="mt-5 max-w-2xl text-sm leading-relaxed sm:text-base" style="color: dimgrey;">
+            Conce Core oferece atendimento domiciliar para idosos com foco em segurança, rotina organizada e bem-estar emocional.
             Um acompanhamento confiável para trazer mais tranquilidade para toda a família.
           </p>
           <div class="mt-7 flex flex-wrap gap-3">
@@ -215,7 +230,7 @@
             </div>
             <div class="rounded-2xl border border-ink/10 bg-white p-3">
               <strong data-counter="20" class="block text-2xl font-extrabold text-brand">0</strong>
-              <span class="text-xs font-semibold text-ink/65">Famílias atendidas</span>
+              <span class="text-xs font-semibold text-ink/65">+ Famílias atendidas</span>
             </div>
             <div class="rounded-2xl border border-ink/10 bg-white p-3">
               <strong data-counter="100" class="block text-2xl font-extrabold text-brand">0</strong>
@@ -226,160 +241,337 @@
       </div>
     </section>
 
-    <section class="pb-16" id="servicos">
+    <section class="pb-20 pt-8" id="servicos">
       <div class="mx-auto w-[92vw] max-w-6xl">
-        <div class="reveal mb-8 max-w-3xl">
+        <div class="reveal mb-12 max-w-2xl">
           <p class="mb-3 inline-flex rounded-full border border-brand/20 bg-white/70 px-4 py-1 text-xs font-bold uppercase tracking-wide text-brand">Serviços</p>
-          <h2 class="font-title text-4xl leading-tight">Assistência completa para o dia a dia do idoso</h2>
+          <h2 class="font-title text-5xl leading-tight mb-3">Assistência completa para o dia a dia do idoso</h2>
+          <p class="text-lg text-ink/60">Conheça todos os serviços personalizados que oferecemos para garantir a segurança, conforto e bem-estar da sua família.</p>
         </div>
 
-        <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-          <article class="card-hover reveal rounded-3xl border border-white/80 bg-white/80 p-5 shadow-soft">
-            <h3 class="text-lg font-bold">Cuidados pessoais</h3>
-            <p class="mt-2 text-sm text-ink/70">Apoio em higiene, banho, troca de roupas, alimentação e conforto diário.</p>
+        <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <article class="card-hover reveal overflow-hidden rounded-3xl border border-white/80 bg-gradient-to-br from-white to-brand/5 p-6 shadow-soft group relative">
+            <span class="absolute top-4 right-4 inline-flex rounded-full bg-gradient-to-r from-brand to-brandSoft px-3 py-1 text-xs font-bold text-white">Destaque</span>
+            <div class="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-brand/10 to-brandSoft/10 group-hover:from-brand/20 group-hover:to-brandSoft/20 transition-all">
+              <svg class="h-7 w-7 text-brand" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+              </svg>
+            </div>
+            <h3 class="mt-4 text-lg font-bold text-ink">Cuidadora 24h</h3>
+            <p class="mt-3 text-sm text-ink/70 leading-relaxed">Atendimento integral disponível 24 horas para garantir segurança e bem-estar contínuo do idoso, com presença constante e responsável.</p>
+            <div class="mt-4 flex items-center text-sm font-semibold text-brand opacity-0 group-hover:opacity-100 transition-opacity">
+            </div>
           </article>
-          <article class="card-hover reveal rounded-3xl border border-white/80 bg-white/80 p-5 shadow-soft">
-            <h3 class="text-lg font-bold">Companhia e rotina ativa</h3>
-            <p class="mt-2 text-sm text-ink/70">Conversas, leitura, jogos e estímulos para manter autonomia e bem-estar emocional.</p>
+
+          <article class="card-hover reveal overflow-hidden rounded-3xl border border-white/80 bg-gradient-to-br from-white to-blue/5 p-6 shadow-soft group">
+            <div class="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-brand/10 to-brandSoft/10 group-hover:from-brand/20 group-hover:to-brandSoft/20 transition-all">
+              <svg class="h-7 w-7 text-brand" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+              </svg>
+            </div>
+            <h3 class="mt-4 text-lg font-bold text-ink">Companhia para lazer</h3>
+            <p class="mt-3 text-sm text-ink/70 leading-relaxed">Passeios, leitura, jogos e atividades recreativas para manter a autonomia, cognição e bem-estar emocional do idoso.</p>
+            <div class="mt-4 flex items-center text-sm font-semibold text-blue-600 opacity-0 group-hover:opacity-100 transition-opacity">
+            </div>
           </article>
-          <article class="card-hover reveal rounded-3xl border border-white/80 bg-white/80 p-5 shadow-soft">
-            <h3 class="text-lg font-bold">Controle de medicação</h3>
-            <p class="mt-2 text-sm text-ink/70">Organização de horários conforme orientação médica e monitoramento constante.</p>
+
+          <article class="card-hover reveal overflow-hidden rounded-3xl border border-white/80 bg-gradient-to-br from-white to-emerald/5 p-6 shadow-soft group">
+            <div class="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-brand/10 to-brandSoft/10 group-hover:from-brand/20 group-hover:to-brandSoft/20 transition-all">
+              <svg class="h-7 w-7 text-brand" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+              </svg>
+            </div>
+            <h3 class="mt-4 text-lg font-bold text-ink">Aluguel de camas hospitalares</h3>
+            <p class="mt-3 text-sm text-ink/70 leading-relaxed">Fornecimento e suporte técnico de camas hospitalares de qualidade para maior conforto e segurança do idoso.</p>
+            <div class="mt-4 flex items-center text-sm font-semibold text-emerald-600 opacity-0 group-hover:opacity-100 transition-opacity">
+            </div>
           </article>
-          <article class="card-hover reveal rounded-3xl border border-white/80 bg-white/80 p-5 shadow-soft">
-            <h3 class="text-lg font-bold">Acompanhamento em consultas</h3>
-            <p class="mt-2 text-sm text-ink/70">Suporte em saídas, exames e consultas para mais segurança durante deslocamentos.</p>
+
+          <article class="card-hover reveal overflow-hidden rounded-3xl border border-white/80 bg-gradient-to-br from-white to-purple/5 p-6 shadow-soft group">
+            <div class="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-brand/10 to-brandSoft/10 group-hover:from-brand/20 group-hover:to-brandSoft/20 transition-all">
+              <svg class="h-7 w-7 text-brand" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+              </svg>
+            </div>
+            <h3 class="mt-4 text-lg font-bold text-ink">Apoio psicológico</h3>
+            <p class="mt-3 text-sm text-ink/70 leading-relaxed">Suporte emocional e escuta atenta para lidar com ansiedade, depressão e questões psicológicas comuns na terceira idade.</p>
+            <div class="mt-4 flex items-center text-sm font-semibold text-purple-600 opacity-0 group-hover:opacity-100 transition-opacity">
+            </div>
           </article>
-          <article class="card-hover reveal rounded-3xl border border-white/80 bg-white/80 p-5 shadow-soft">
-            <h3 class="text-lg font-bold">Apoio para famílias</h3>
-            <p class="mt-2 text-sm text-ink/70">Comunicação clara sobre evolução da rotina e orientações para o cuidado em casa.</p>
+
+          <article class="card-hover reveal overflow-hidden rounded-3xl border border-white/80 bg-gradient-to-br from-white to-orange/5 p-6 shadow-soft group">
+            <div class="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-brand/10 to-brandSoft/10 group-hover:from-brand/20 group-hover:to-brandSoft/20 transition-all">
+              <svg class="h-7 w-7 text-brand" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+              </svg>
+            </div>
+            <h3 class="mt-4 text-lg font-bold text-ink">Cuidados paliativos</h3>
+            <p class="mt-3 text-sm text-ink/70 leading-relaxed">Atendimento humanizado e compassivo focado em qualidade de vida, conforto e dignidade nos últimos momentos.</p>
+            <div class="mt-4 flex items-center text-sm font-semibold text-orange-600 opacity-0 group-hover:opacity-100 transition-opacity">
+            </div>
           </article>
-          <article class="card-hover reveal rounded-3xl border border-white/80 bg-white/80 p-5 shadow-soft">
-            <h3 class="text-lg font-bold">Atendimento flexível</h3>
-            <p class="mt-2 text-sm text-ink/70">Planos avulsos, periódicos ou contínuos, com horários adaptados à sua necessidade.</p>
+
+          <article class="card-hover reveal overflow-hidden rounded-3xl border border-white/80 bg-gradient-to-br from-white to-pink/5 p-6 shadow-soft group">
+            <div class="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-brand/10 to-brandSoft/10 group-hover:from-brand/20 group-hover:to-brandSoft/20 transition-all">
+              <svg class="h-7 w-7 text-brand" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+              </svg>
+            </div>
+            <h3 class="mt-4 text-lg font-bold text-ink">Atendimento flexível</h3>
+            <p class="mt-3 text-sm text-ink/70 leading-relaxed">Planos avulsos, periódicos ou contínuos com horários totalmente adaptados à rotina e necessidade da família.</p>
+            <div class="mt-4 flex items-center text-sm font-semibold text-pink-600 opacity-0 group-hover:opacity-100 transition-opacity">
+            </div>
           </article>
         </div>
       </div>
     </section>
-
-    <section id="diferenciais" class="bg-white/60 py-16">
-      <div class="mx-auto grid w-[92vw] max-w-6xl gap-5 lg:grid-cols-2">
-        <article class="card-hover reveal rounded-3xl border border-ink/10 bg-white p-6 shadow-soft">
-          <p class="mb-2 text-xs font-bold uppercase tracking-wide text-brand">Diferenciais</p>
-          <h2 class="font-title text-4xl leading-tight">Profissionalismo com acolhimento humano</h2>
-          <p class="mt-3 text-sm text-ink/70">O atendimento combina técnica, observação e respeito pelo ritmo da pessoa idosa, com foco em conforto e dignidade.</p>
-          <ul class="mt-4 space-y-2 text-sm text-ink/75">
-            <li>- Postura ética, discreta e pontual</li>
-            <li>- Plano de cuidado adaptado para cada família</li>
-            <li>- Relato contínuo de evolução e necessidades</li>
-            <li>- Presença ativa para reduzir riscos domésticos</li>
-          </ul>
-        </article>
-
-        <article class="card-hover reveal rounded-3xl border border-ink/10 bg-white p-6 shadow-soft">
-          <p class="mb-3 text-xs font-bold uppercase tracking-wide text-brand">Como funciona</p>
-          <div class="space-y-4 text-sm text-ink/75">
-            <div>
-              <h3 class="font-semibold text-ink">1. Conversa inicial</h3>
-              <p>Entendimento da rotina, histórico e expectativas da família.</p>
-            </div>
-            <div>
-              <h3 class="font-semibold text-ink">2. Plano personalizado</h3>
-              <p>Definição de atividades, horários e prioridades de cuidado.</p>
-            </div>
-            <div>
-              <h3 class="font-semibold text-ink">3. Acompanhamento contínuo</h3>
-              <p>Cuidados diários, ajustes de plano e comunicação permanente.</p>
-            </div>
-          </div>
-        </article>
       </div>
     </section>
 
-    <section class="py-16">
+    <section id="diferenciais" class="bg-gradient-to-br from-white/40 to-brand/5 py-20">
       <div class="mx-auto w-[92vw] max-w-6xl">
-        <div class="reveal mb-8 max-w-3xl">
+        <div class="reveal mb-12 text-center max-w-2xl mx-auto">
+          <p class="mb-3 inline-flex rounded-full border border-brand/20 bg-white/70 px-4 py-1 text-xs font-bold uppercase tracking-wide text-brand">Diferenciais</p>
+          <h2 class="font-title text-5xl leading-tight mb-3">Profissionalismo com acolhimento humano</h2>
+          <p class="text-lg text-ink/60">O atendimento combina técnica, observação e respeito pelo ritmo da pessoa idosa, com foco em conforto e dignidade.</p>
+        </div>
+
+        <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-4 mb-12">
+          <article class="card-hover reveal overflow-hidden rounded-3xl border border-white/80 bg-gradient-to-br from-white to-emerald/5 p-6 shadow-soft group">
+            <div class="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-emerald/10 to-emerald/5 group-hover:from-emerald/20 group-hover:to-emerald/15 transition-all">
+              <svg class="h-6 w-6 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+            </div>
+            <h3 class="mt-4 text-sm font-bold text-ink">Postura ética</h3>
+            <p class="mt-2 text-xs text-ink/70 leading-relaxed">Discreta, pontual e responsável em todas as situações.</p>
+          </article>
+
+          <article class="card-hover reveal overflow-hidden rounded-3xl border border-white/80 bg-gradient-to-br from-white to-blue/5 p-6 shadow-soft group">
+            <div class="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-blue/10 to-blue/5 group-hover:from-blue/20 group-hover:to-blue/15 transition-all">
+              <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m0 0l-2-1m2 1v2.5M14 4l-2 1m0 0l-2-1m2 1v2.5"></path>
+              </svg>
+            </div>
+            <h3 class="mt-4 text-sm font-bold text-ink">Plano adaptado</h3>
+            <p class="mt-2 text-xs text-ink/70 leading-relaxed">Cuidado personalizado para cada família.</p>
+          </article>
+
+          <article class="card-hover reveal overflow-hidden rounded-3xl border border-white/80 bg-gradient-to-br from-white to-purple/5 p-6 shadow-soft group">
+            <div class="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-purple/10 to-purple/5 group-hover:from-purple/20 group-hover:to-purple/15 transition-all">
+              <svg class="h-6 w-6 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"></path>
+              </svg>
+            </div>
+            <h3 class="mt-4 text-sm font-bold text-ink">Relatos contínuos</h3>
+            <p class="mt-2 text-xs text-ink/70 leading-relaxed">Comunicação permanente sobre evolução.</p>
+          </article>
+
+          <article class="card-hover reveal overflow-hidden rounded-3xl border border-white/80 bg-gradient-to-br from-white to-rose/5 p-6 shadow-soft group">
+            <div class="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-rose/10 to-rose/5 group-hover:from-rose/20 group-hover:to-rose/15 transition-all">
+              <svg class="h-6 w-6 text-rose-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path d="M12 8v4m0 4v.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+            </div>
+            <h3 class="mt-4 text-sm font-bold text-ink">Segurança ativa</h3>
+            <p class="mt-2 text-xs text-ink/70 leading-relaxed">Presença constante para reduzir riscos.</p>
+          </article>
+        </div>
+
+        <div class="grid gap-6 md:grid-cols-3">
+          <article class="card-hover reveal overflow-hidden rounded-3xl border border-white/80 bg-gradient-to-br from-white to-orange/5 p-8 shadow-soft group">
+            <div class="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-orange/10 to-orange/5 group-hover:from-orange/20 group-hover:to-orange/15 transition-all">
+              <svg class="h-7 w-7 text-orange-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path d="M8 12h.01M12 12h.01M16 12h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+            </div>
+            <h3 class="mt-5 text-lg font-bold text-ink">Etapa 1</h3>
+            <p class="mt-2 font-semibold text-brand text-sm mb-2">Conversa inicial</p>
+            <p class="text-sm text-ink/70 leading-relaxed">Entendimento completo da rotina, histórico e expectativas da família para definir a melhor abordagem.</p>
+          </article>
+
+          <article class="card-hover reveal overflow-hidden rounded-3xl border border-white/80 bg-gradient-to-br from-white to-cyan/5 p-8 shadow-soft group">
+            <div class="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-cyan/10 to-cyan/5 group-hover:from-cyan/20 group-hover:to-cyan/15 transition-all">
+              <svg class="h-7 w-7 text-cyan-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
+              </svg>
+            </div>
+            <h3 class="mt-5 text-lg font-bold text-ink">Etapa 2</h3>
+            <p class="mt-2 font-semibold text-brand text-sm mb-2">Plano personalizado</p>
+            <p class="text-sm text-ink/70 leading-relaxed">Definição clara de atividades, horários, responsabilidades e prioridades de cuidado para a situação específica.</p>
+          </article>
+
+          <article class="card-hover reveal overflow-hidden rounded-3xl border border-white/80 bg-gradient-to-br from-white to-teal/5 p-8 shadow-soft group">
+            <div class="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-teal/10 to-teal/5 group-hover:from-teal/20 group-hover:to-teal/15 transition-all">
+              <svg class="h-7 w-7 text-teal-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+              </svg>
+            </div>
+            <h3 class="mt-5 text-lg font-bold text-ink">Etapa 3</h3>
+            <p class="mt-2 font-semibold text-brand text-sm mb-2">Acompanhamento contínuo</p>
+            <p class="text-sm text-ink/70 leading-relaxed">Cuidados diários, ajustes constantes do plano e comunicação permanente com a família.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-20">
+      <div class="mx-auto w-[92vw] max-w-6xl">
+        <div class="reveal mb-12 text-center max-w-2xl mx-auto">
           <p class="mb-3 inline-flex rounded-full border border-brand/20 bg-white/70 px-4 py-1 text-xs font-bold uppercase tracking-wide text-brand">Área de atendimento</p>
-          <h2 class="font-title text-4xl leading-tight">Atendimento em Itatiba-SP e região</h2>
-          <p class="mt-3 text-sm text-ink/70">Fatima Costa atende em domicílio em Itatiba-SP, com possibilidade de deslocamento para bairros e cidades próximas mediante avaliação de agenda.</p>
+          <h2 class="font-title text-5xl leading-tight mb-3">Atendimento em Itatiba-SP e região</h2>
+          <p class="text-lg text-ink/60">Conce Care atende em domicílio em Itatiba-SP, com possibilidade de deslocamento para bairros e cidades próximas mediante avaliação de agenda.</p>
         </div>
-        <div class="grid gap-4 md:grid-cols-3">
-          <article class="card-hover reveal rounded-3xl border border-white/80 bg-white/85 p-5 shadow-soft">
-            <h3 class="font-bold">Cidade base</h3>
-            <p class="mt-2 text-sm text-ink/70">Itatiba - São Paulo</p>
+        <div class="grid gap-6 md:grid-cols-3">
+          <article class="card-hover reveal overflow-hidden rounded-3xl border border-white/80 bg-gradient-to-br from-white to-blue/5 p-8 shadow-soft group">
+            <div class="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-blue/10 to-blue/5 group-hover:from-blue/20 group-hover:to-blue/15 transition-all">
+              <svg class="h-7 w-7 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"></path>
+                <path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+              </svg>
+            </div>
+            <h3 class="mt-5 text-lg font-bold">Cidade base</h3>
+            <p class="mt-2 text-xl font-bold text-brand">Itatiba - SP</p>
+            <p class="mt-3 text-sm text-ink/70 leading-relaxed">Atendimento domiciliar em região central e bairros próximos com flexibilidade de deslocamento.</p>
           </article>
-          <article class="card-hover reveal rounded-3xl border border-white/80 bg-white/85 p-5 shadow-soft">
-            <h3 class="font-bold">Horários</h3>
-            <p class="mt-2 text-sm text-ink/70">Segunda a sábado, com plantão sob consulta.</p>
+
+          <article class="card-hover reveal overflow-hidden rounded-3xl border border-white/80 bg-gradient-to-br from-white to-amber/5 p-8 shadow-soft group">
+            <div class="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-amber/10 to-amber/5 group-hover:from-amber/20 group-hover:to-amber/15 transition-all">
+              <svg class="h-7 w-7 text-amber-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+            </div>
+            <h3 class="mt-5 text-lg font-bold">Horários</h3>
+            <p class="mt-2 text-xl font-bold text-brand">Seg a Sab</p>
+            <p class="mt-3 text-sm text-ink/70 leading-relaxed">Horários flexíveis com possibilidade de plantão disponível mediante consulta prévia.</p>
           </article>
-          <article class="card-hover reveal rounded-3xl border border-white/80 bg-white/85 p-5 shadow-soft">
-            <h3 class="font-bold">Contato rápido</h3>
-            <p class="mt-2 text-sm text-ink/70">Resposta via WhatsApp para dúvidas e orçamentos.</p>
+
+          <article class="card-hover reveal overflow-hidden rounded-3xl border border-white/80 bg-gradient-to-br from-white to-green/5 p-8 shadow-soft group">
+            <div class="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-green/10 to-green/5 group-hover:from-green/20 group-hover:to-green/15 transition-all">
+              <svg class="h-7 w-7 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+              </svg>
+            </div>
+            <h3 class="mt-5 text-lg font-bold">Contato rápido</h3>
+            <p class="mt-2 text-sm font-bold text-green-600">Resposta via WhatsApp</p>
+            <p class="mt-3 text-sm text-ink/70 leading-relaxed">Esclareça dúvidas e solicite orçamentos de forma rápida e prática.</p>
           </article>
         </div>
       </div>
     </section>
 
-    <section id="depoimentos" class="bg-white/60 py-16">
+    <section id="depoimentos" class="bg-gradient-to-br from-white/40 to-brand/5 py-20">
       <div class="mx-auto w-[92vw] max-w-6xl">
-        <div class="reveal mb-8 max-w-3xl">
+        <div class="reveal mb-12 text-center max-w-2xl mx-auto">
           <p class="mb-3 inline-flex rounded-full border border-brand/20 bg-white/70 px-4 py-1 text-xs font-bold uppercase tracking-wide text-brand">Depoimentos</p>
-          <h2 class="font-title text-4xl leading-tight">Confiança construída no cuidado diário</h2>
+          <h2 class="font-title text-5xl leading-tight mb-3">Confiança construída no cuidado diário</h2>
+          <p class="text-lg text-ink/60">Ouça as histórias de famílias que tiveram suas vidas transformadas pelo nosso atendimento.</p>
         </div>
-        <div class="grid gap-4 md:grid-cols-3">
-          <blockquote class="card-hover reveal rounded-3xl border border-ink/10 bg-white p-5 shadow-soft">
-            <p class="text-sm text-ink/70">"A Fatima trouxe tranquilidade para nossa família. Atendimento impecável e muito humano."</p>
-            <cite class="mt-4 block text-sm font-bold not-italic">Família Souza</cite>
+        <div class="grid gap-6 md:grid-cols-3">
+          <blockquote class="card-hover reveal overflow-hidden rounded-3xl border border-white/80 bg-gradient-to-br from-white to-yellow/5 p-8 shadow-soft group relative">
+            <div class="flex gap-1 mb-4">
+              <svg class="h-5 w-5 text-yellow-400 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+              <svg class="h-5 w-5 text-yellow-400 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+              <svg class="h-5 w-5 text-yellow-400 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+              <svg class="h-5 w-5 text-yellow-400 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+            </div>
+            <svg class="h-8 w-8 text-yellow-200 mb-3" fill="currentColor" viewBox="0 0 24 24"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-4.357-2-7-2s-7 .75-7 2v8c0 1-4 8 7 8z"></path><path d="M15.698 21c0 0 9 0 9-8V5c0-1.25-4.357-2-7-2c-1.25 0-4.027.75-5.952 2c3.272-1.5 7.739-1.5 9.952 0c3 1.5 4 3 4 5v8c0 8-8.006 8-9 8z"></path></svg>
+            <p class="text-sm text-ink/70 leading-relaxed italic">"A Fatima trouxe tranquilidade para nossa família. Atendimento impecável e muito humano."</p>
+            <cite class="mt-5 block text-sm font-bold not-italic text-brand">Família Souza</cite>
           </blockquote>
-          <blockquote class="card-hover reveal rounded-3xl border border-ink/10 bg-white p-5 shadow-soft">
-            <p class="text-sm text-ink/70">"Profissional atenciosa, pontual e cuidadosa. Nossa rotina ficou mais organizada e segura."</p>
-            <cite class="mt-4 block text-sm font-bold not-italic">Família Nascimento</cite>
+
+          <blockquote class="card-hover reveal overflow-hidden rounded-3xl border border-white/80 bg-gradient-to-br from-white to-orange/5 p-8 shadow-soft group relative">
+            <div class="flex gap-1 mb-4">
+              <svg class="h-5 w-5 text-yellow-400 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+              <svg class="h-5 w-5 text-yellow-400 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+              <svg class="h-5 w-5 text-yellow-400 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+              <svg class="h-5 w-5 text-yellow-400 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+            </div>
+            <svg class="h-8 w-8 text-orange-200 mb-3" fill="currentColor" viewBox="0 0 24 24"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-4.357-2-7-2s-7 .75-7 2v8c0 1-4 8 7 8z"></path><path d="M15.698 21c0 0 9 0 9-8V5c0-1.25-4.357-2-7-2c-1.25 0-4.027.75-5.952 2c3.272-1.5 7.739-1.5 9.952 0c3 1.5 4 3 4 5v8c0 8-8.006 8-9 8z"></path></svg>
+            <p class="text-sm text-ink/70 leading-relaxed italic">"Profissional atenciosa, pontual e cuidadosa. Nossa rotina ficou mais organizada e segura."</p>
+            <cite class="mt-5 block text-sm font-bold not-italic text-brand">Família Nascimento</cite>
           </blockquote>
-          <blockquote class="card-hover reveal rounded-3xl border border-ink/10 bg-white p-5 shadow-soft">
-            <p class="text-sm text-ink/70">"Recomendo com confiança. Meu pai se sente acolhido e bem assistido todos os dias."</p>
-            <cite class="mt-4 block text-sm font-bold not-italic">Família Almeida</cite>
+
+          <blockquote class="card-hover reveal overflow-hidden rounded-3xl border border-white/80 bg-gradient-to-br from-white to-pink/5 p-8 shadow-soft group relative">
+            <div class="flex gap-1 mb-4">
+              <svg class="h-5 w-5 text-yellow-400 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+              <svg class="h-5 w-5 text-yellow-400 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+              <svg class="h-5 w-5 text-yellow-400 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+              <svg class="h-5 w-5 text-yellow-400 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+            </div>
+            <svg class="h-8 w-8 text-pink-200 mb-3" fill="currentColor" viewBox="0 0 24 24"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-4.357-2-7-2s-7 .75-7 2v8c0 1-4 8 7 8z"></path><path d="M15.698 21c0 0 9 0 9-8V5c0-1.25-4.357-2-7-2c-1.25 0-4.027.75-5.952 2c3.272-1.5 7.739-1.5 9.952 0c3 1.5 4 3 4 5v8c0 8-8.006 8-9 8z"></path></svg>
+            <p class="text-sm text-ink/70 leading-relaxed italic">"Recomendo com confiança. Meu pai se sente acolhido e bem assistido todos os dias."</p>
+            <cite class="mt-5 block text-sm font-bold not-italic text-brand">Família Almeida</cite>
           </blockquote>
         </div>
       </div>
     </section>
 
-    <section id="faq" class="py-16">
+    <section id="faq" class="py-20">
       <div class="mx-auto w-[92vw] max-w-4xl">
-        <div class="reveal mb-8 text-center">
+        <div class="reveal mb-12 text-center max-w-2xl mx-auto">
           <p class="mb-3 inline-flex rounded-full border border-brand/20 bg-white/70 px-4 py-1 text-xs font-bold uppercase tracking-wide text-brand">FAQ</p>
-          <h2 class="font-title text-4xl leading-tight">Perguntas frequentes</h2>
+          <h2 class="font-title text-5xl leading-tight mb-3">Perguntas frequentes</h2>
+          <p class="text-lg text-ink/60">Tire suas dúvidas sobre o atendimento, modalidades de contrato e como funciona o processo.</p>
         </div>
-        <div class="space-y-3">
-          <article class="faq-item open reveal rounded-2xl border border-ink/10 bg-white p-4 shadow-soft transition hover:border-brand/30 hover:bg-white/95">
+        <div class="space-y-4">
+          <article class="faq-item open reveal overflow-hidden rounded-3xl border border-white/80 bg-gradient-to-br from-white to-brand/5 p-6 shadow-soft transition hover:border-brand/30 hover:bg-white/95 group">
             <button type="button" class="faq-trigger flex w-full items-center justify-between gap-4 text-left" aria-expanded="true">
-              <span class="text-sm font-bold">Como funciona o primeiro atendimento?</span>
-              <span class="faq-icon inline-flex h-7 w-7 items-center justify-center rounded-full border border-ink/20 text-lg leading-none">+</span>
+              <div class="flex items-start gap-3 flex-1">
+                <div class="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-brand/10 group-hover:bg-brand/20 transition-colors flex-shrink-0 mt-1">
+                  <svg class="h-5 w-5 text-brand" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path d="M8 12h.01M12 12h.01M16 12h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                  </svg>
+                </div>
+                <span class="text-sm font-bold text-ink leading-normal">Como funciona o primeiro atendimento?</span>
+              </div>
+              <span class="faq-icon inline-flex h-8 w-8 items-center justify-center rounded-lg border border-brand/20 text-brand leading-none flex-shrink-0 font-bold">+</span>
             </button>
             <div class="faq-content">
-              <div>
-                <p class="pt-3 text-sm text-ink/70">É realizada uma conversa inicial para entender rotina, necessidades e definir o formato ideal do cuidado.</p>
+              <div class="pl-11">
+                <p class="pt-3 text-sm text-ink/70 leading-relaxed">É realizada uma conversa inicial para entender sua rotina, histórico, necessidades específicas e expectativas da família. A partir disso, definimos o formato ideal do cuidado e agendamos o início do atendimento.</p>
               </div>
             </div>
           </article>
-          <article class="faq-item reveal rounded-2xl border border-ink/10 bg-white p-4 shadow-soft transition hover:border-brand/30 hover:bg-white/95">
+          <article class="faq-item reveal overflow-hidden rounded-3xl border border-white/80 bg-gradient-to-br from-white to-blue/5 p-6 shadow-soft transition hover:border-blue/30 hover:bg-white/95 group">
             <button type="button" class="faq-trigger flex w-full items-center justify-between gap-4 text-left" aria-expanded="false">
-              <span class="text-sm font-bold">Atende somente idosos acamados?</span>
-              <span class="faq-icon inline-flex h-7 w-7 items-center justify-center rounded-full border border-ink/20 text-lg leading-none">+</span>
+              <div class="flex items-start gap-3 flex-1">
+                <div class="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-blue-100 group-hover:bg-blue-200 transition-colors flex-shrink-0 mt-1">
+                  <svg class="h-5 w-5 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                  </svg>
+                </div>
+                <span class="text-sm font-bold text-ink leading-normal">Atende somente idosos acamados?</span>
+              </div>
+              <span class="faq-icon inline-flex h-8 w-8 items-center justify-center rounded-lg border border-blue-200 text-blue-600 leading-none flex-shrink-0 font-bold">+</span>
             </button>
             <div class="faq-content">
-              <div>
-                <p class="pt-3 text-sm text-ink/70">Não. O atendimento inclui idosos independentes, semi dependentes ou com necessidade de apoio contínuo.</p>
+              <div class="pl-11">
+                <p class="pt-3 text-sm text-ink/70 leading-relaxed">Não. O atendimento da Fátima Costa inclui idosos completamente independentes, semi dependentes ou com necessidade de apoio contínuo. Cada situação é avaliada individualmente para oferecer o melhor cuidado possível.</p>
               </div>
             </div>
           </article>
-          <article class="faq-item reveal rounded-2xl border border-ink/10 bg-white p-4 shadow-soft transition hover:border-brand/30 hover:bg-white/95">
+          <article class="faq-item reveal overflow-hidden rounded-3xl border border-white/80 bg-gradient-to-br from-white to-emerald/5 p-6 shadow-soft transition hover:border-emerald/30 hover:bg-white/95 group">
             <button type="button" class="faq-trigger flex w-full items-center justify-between gap-4 text-left" aria-expanded="false">
-              <span class="text-sm font-bold">Existe plano mensal?</span>
-              <span class="faq-icon inline-flex h-7 w-7 items-center justify-center rounded-full border border-ink/20 text-lg leading-none">+</span>
+              <div class="flex items-start gap-3 flex-1">
+                <div class="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-100 group-hover:bg-emerald-200 transition-colors flex-shrink-0 mt-1">
+                  <svg class="h-5 w-5 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                  </svg>
+                </div>
+                <span class="text-sm font-bold text-ink leading-normal">Existe plano mensal? Como são os preços?</span>
+              </div>
+              <span class="faq-icon inline-flex h-8 w-8 items-center justify-center rounded-lg border border-emerald-200 text-emerald-600 leading-none flex-shrink-0 font-bold">+</span>
             </button>
             <div class="faq-content">
-              <div>
-                <p class="pt-3 text-sm text-ink/70">Sim. Existem opções avulsas e mensais, com carga horária ajustada para cada família.</p>
+              <div class="pl-11">
+                <p class="pt-3 text-sm text-ink/70 leading-relaxed">Sim! Existem opções de atendimento avulso, periódico e mensal contínuo, com carga horária totalmente ajustada e flexível para cada família. Os preços variam conforme o plano escolhido. Entre em contato conosco para solicitar um orçamento personalizado.</p>
               </div>
             </div>
           </article>
@@ -387,34 +579,34 @@
       </div>
     </section>
 
-    <section id="contato" class="pb-16">
+    <section id="contato" class="py-20">
       <div class="mx-auto w-[92vw] max-w-6xl">
-        <article class="reveal rounded-[2rem] border border-ink/10 bg-gradient-to-br from-white to-white/80 p-7 shadow-soft sm:p-10">
-          <div class="mb-8 text-center">
-            <p class="mb-2 text-xs font-bold uppercase tracking-wide text-brand">Contato</p>
-            <h2 class="font-title text-4xl leading-tight">Fale com Fatima Costa e receba orientação personalizada</h2>
-            <p class="mx-auto mt-3 max-w-2xl text-sm text-ink/70">Preencha os dados para gerar uma mensagem pronta e enviar direto para o WhatsApp. Atendimento em Itatiba-SP e região.</p>
+        <article class="reveal overflow-hidden rounded-3xl border border-white/80 bg-gradient-to-br from-white to-brand/5 p-8 shadow-soft sm:p-12">
+          <div class="mb-12 text-center max-w-2xl mx-auto">
+            <p class="mb-3 inline-flex rounded-full border border-brand/20 bg-white/70 px-4 py-1 text-xs font-bold uppercase tracking-wide text-brand">Contato</p>
+            <h2 class="font-title text-5xl leading-tight mb-3">Fale com Conce Care</h2>
+            <p class="text-lg text-ink/60">Preencha o formulário e receba atendimento personalizado. Resposta rápida via WhatsApp!</p>
           </div>
 
-          <div class="grid gap-5 lg:grid-cols-2">
-            <form id="whatsappForm" class="card-hover rounded-3xl border border-ink/10 bg-white p-5 shadow-soft">
-              <div class="grid gap-3 sm:grid-cols-2">
+          <div class="grid gap-8 lg:grid-cols-2">
+            <form id="whatsappForm" class="card-hover overflow-hidden rounded-3xl border border-white/80 bg-white p-8 shadow-soft">
+              <div class="grid gap-4 sm:grid-cols-2 mb-4">
                 <label class="text-sm font-semibold text-ink/80">
-                  Nome
-                  <input id="nome" name="nome" required type="text" class="mt-1 w-full rounded-xl border border-ink/15 px-3 py-2 text-sm outline-none transition focus:border-brand" placeholder="Seu nome" />
+                  <span class="block mb-2">Nome completo</span>
+                  <input id="nome" name="nome" required type="text" class="w-full rounded-xl border border-ink/15 px-4 py-2 text-sm outline-none transition focus:border-brand focus:ring-1 focus:ring-brand/20" placeholder="Seu nome" />
                 </label>
                 <label class="text-sm font-semibold text-ink/80">
-                  Telefone
-                  <input id="telefone" name="telefone" type="tel" class="mt-1 w-full rounded-xl border border-ink/15 px-3 py-2 text-sm outline-none transition focus:border-brand" placeholder="(11) 99999-9999" />
+                  <span class="block mb-2">Telefone</span>
+                  <input id="telefone" name="telefone" type="tel" class="w-full rounded-xl border border-ink/15 px-4 py-2 text-sm outline-none transition focus:border-brand focus:ring-1 focus:ring-brand/20" placeholder="(11) 99999-9999" />
                 </label>
                 <label class="text-sm font-semibold text-ink/80">
-                  Parentesco
-                  <input id="parentesco" name="parentesco" type="text" class="mt-1 w-full rounded-xl border border-ink/15 px-3 py-2 text-sm outline-none transition focus:border-brand" placeholder="Filho(a), neto(a)..." />
+                  <span class="block mb-2">Parentesco</span>
+                  <input id="parentesco" name="parentesco" type="text" class="w-full rounded-xl border border-ink/15 px-4 py-2 text-sm outline-none transition focus:border-brand focus:ring-1 focus:ring-brand/20" placeholder="Filho(a), neto(a)..." />
                 </label>
                 <label class="text-sm font-semibold text-ink/80">
-                  Periodo desejado
-                  <select id="periodo" name="periodo" class="mt-1 w-full rounded-xl border border-ink/15 px-3 py-2 text-sm outline-none transition focus:border-brand">
-                    <option>Manha</option>
+                  <span class="block mb-2">Período desejado</span>
+                  <select id="periodo" name="periodo" class="w-full rounded-xl border border-ink/15 px-4 py-2 text-sm outline-none transition focus:border-brand focus:ring-1 focus:ring-brand/20 bg-white">
+                    <option>Manhã</option>
                     <option>Tarde</option>
                     <option>Noite</option>
                     <option>24 horas</option>
@@ -423,31 +615,52 @@
                 </label>
               </div>
 
-              <label class="mt-3 block text-sm font-semibold text-ink/80">
-                Mensagem
-                <textarea id="mensagem" name="mensagem" rows="4" class="mt-1 w-full rounded-xl border border-ink/15 px-3 py-2 text-sm outline-none transition focus:border-brand" placeholder="Conte um pouco da necessidade da familia."></textarea>
+              <label class="block text-sm font-semibold text-ink/80 mb-4">
+                <span class="block mb-2">Mensagem</span>
+                <textarea id="mensagem" name="mensagem" rows="5" class="w-full rounded-xl border border-ink/15 px-4 py-2 text-sm outline-none transition focus:border-brand focus:ring-1 focus:ring-brand/20 resize-none" placeholder="Conte um pouco sobre a necessidade da família..."></textarea>
               </label>
 
-              <div class="mt-4 flex flex-wrap gap-3">
-                <button type="submit" class="inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-brand to-brandSoft px-5 py-3 text-sm font-bold text-white shadow-lg shadow-brand/25 transition hover:-translate-y-0.5 hover:brightness-105">Enviar no WhatsApp</button>
-              </div>
+              <button type="submit" class="w-full inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-brand to-brandSoft px-6 py-3 text-sm font-bold text-white shadow-lg shadow-brand/30 transition hover:-translate-y-0.5 hover:brightness-105">
+                <svg class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                </svg>
+                Enviar no WhatsApp
+              </button>
             </form>
 
-            <aside class="card-hover rounded-3xl border border-ink/10 bg-white p-5 shadow-soft">
-              <h3 class="text-lg font-bold">Atendimento em Itatiba-SP</h3>
-              <p class="mt-2 text-sm text-ink/70">Região central e bairros próximos, com deslocamento sob consulta para cidades vizinhas.</p>
-              <div class="mt-4 overflow-hidden rounded-2xl border border-ink/10">
-                <iframe
-                  title="Mapa de Itatiba-SP"
-                  src="https://www.google.com/maps?q=Itatiba%20SP&output=embed"
-                  width="100%"
-                  height="280"
-                  style="border:0;"
-                  loading="lazy"
-                  referrerpolicy="no-referrer-when-downgrade"
-                ></iframe>
+            <aside class="flex flex-col gap-6">
+              <div class="card-hover overflow-hidden rounded-3xl border border-white/80 bg-white p-8 shadow-soft">
+                <h3 class="text-xl font-bold mb-2">Atendimento em Itatiba-SP</h3>
+                <p class="text-sm text-ink/70 leading-relaxed mb-5">Região central e bairros próximos, com deslocamento sob consulta para cidades vizinhas.</p>
+                <div class="overflow-hidden rounded-2xl border border-ink/10">
+                  <iframe
+                    title="Mapa de Itatiba-SP"
+                    src="https://www.google.com/maps?q=Itatiba%20SP&output=embed"
+                    width="100%"
+                    height="250"
+                    style="border:0;"
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"
+                  ></iframe>
+                </div>
               </div>
-              <p class="mt-3 text-xs font-semibold text-ink/60">WhatsApp direto: (11) 99234-9916</p>
+
+              <div class="grid grid-cols-2 gap-4">
+                <div class="rounded-3xl border border-white/80 bg-white p-6 shadow-soft hover:border-brand/30 transition">
+                  <svg class="h-6 w-6 text-brand mb-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                  </svg>
+                  <p class="text-xs font-bold text-ink/60 uppercase mb-1">WhatsApp</p>
+                  <p class="text-sm font-bold text-ink">(11) 99234-9916</p>
+                </div>
+                <div class="rounded-3xl border border-white/80 bg-white p-6 shadow-soft hover:border-brand/30 transition">
+                  <svg class="h-6 w-6 text-brand mb-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                  </svg>
+                  <p class="text-xs font-bold text-ink/60 uppercase mb-1">Horário</p>
+                  <p class="text-sm font-bold text-ink">Seg - Sab</p>
+                </div>
+              </div>
             </aside>
           </div>
         </article>
@@ -455,58 +668,104 @@
     </section>
   </main>
 
-  <footer class="border-t border-ink/10 bg-[#5d776f] py-10 text-white/90">
-    <div class="mx-auto grid w-[92vw] max-w-6xl gap-8 md:grid-cols-2 lg:grid-cols-4">
-      <div>
-        <div class="flex items-center gap-3">
-          <span class="grid h-10 w-10 place-items-center rounded-xl bg-white/20 text-sm font-bold text-white">FC</span>
-          <p class="font-semibold">Fatima Costa</p>
+  <!-- Modal de Contato do Desenvolvedor -->
+  <div id="contactDeveloperModal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
+    <div class="animate-scale-in bg-white rounded-3xl shadow-2xl p-8 w-[92vw] max-w-md">
+      <div class="flex items-center justify-between mb-6">
+        <h3 class="text-2xl font-bold text-ink">Fale com Pedro</h3>
+        <button onclick="closeContactDeveloperModal()" class="text-ink/60 hover:text-ink transition text-2xl leading-none">✕</button>
+      </div>
+      
+      <p class="text-ink/70 mb-6 text-sm">Preencha seu assunto e envie uma mensagem via WhatsApp.</p>
+      
+      <form id="contactDeveloperForm" onsubmit="handleDeveloperContact(event)" class="space-y-4">
+        <div>
+          <label for="developerSubject" class="block text-sm font-semibold text-ink mb-2">Assunto</label>
+          <input 
+            type="text" 
+            id="developerSubject" 
+            name="subject" 
+            placeholder="Ex: Desenvolvimento de sites, consultoria..." 
+            required 
+            class="w-full px-4 py-3 rounded-lg border border-sand/50 bg-white/50 text-ink placeholder:text-ink/40 focus:outline-none focus:border-brand focus:ring-2 focus:ring-brand/20 transition"
+          >
         </div>
-        <p class="mt-3 text-sm text-white/70">Cuidadora de idosos com atendimento profissional, acolhedor e focado na dignidade da pessoa idosa.</p>
+        
+        <button 
+          type="submit" 
+          class="w-full bg-gradient-to-r from-brand to-brandSoft text-white font-bold py-3 rounded-lg hover:shadow-lg transition transform hover:scale-105 active:scale-95"
+        >
+          Enviar via WhatsApp
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <footer class="border-t border-white/20 bg-gradient-to-br from-[#5d776f] via-[#546b64] to-[#4d6159] py-12 text-white/90">
+    <div class="mx-auto grid w-[92vw] max-w-6xl gap-10 md:grid-cols-2 lg:grid-cols-4 mb-8">
+      <div class="space-y-3">
+        <div class="flex items-center gap-3">
+          <span class="grid h-10 w-10 place-items-center rounded-xl bg-white/20 text-sm font-bold text-white">CC</span>
+          <p class="font-semibold">Conce Care</p>
+        </div>
+        <p class="mt-3 text-sm text-white/80 leading-relaxed">Cuidadora de idosos com atendimento profissional, acolhedor e focado na dignidade da pessoa idosa em Itatiba-SP.</p>
+        <div class="flex gap-2 pt-2">
+        </div>
       </div>
-      <div>
-        <h3 class="text-sm font-bold uppercase tracking-wide text-white">Atendimento</h3>
-        <ul class="mt-3 space-y-2 text-sm text-white/75">
-          <li>Itatiba-SP</li>
-          <li>Atendimento domiciliar</li>
-          <li>Seg a Sab - horários flexíveis</li>
+
+      <div class="space-y-3">
+        <h3 class="text-sm font-bold uppercase tracking-wide text-white">Serviços</h3>
+        <ul class="mt-4 space-y-2 text-sm text-white/80">
+          <li><a href="#servicos" class="transition hover:text-white hover:translate-x-1 inline-flex items-center gap-1">→ Cuidadora 24h</a></li>
+          <li><a href="#servicos" class="transition hover:text-white hover:translate-x-1 inline-flex items-center gap-1">→ Atendimento flexível</a></li>
+          <li><a href="#servicos" class="transition hover:text-white hover:translate-x-1 inline-flex items-center gap-1">→ Acompanhamento</a></li>
         </ul>
       </div>
-      <div>
+
+      <div class="space-y-3">
         <h3 class="text-sm font-bold uppercase tracking-wide text-white">Contato</h3>
-        <ul class="mt-3 space-y-2 text-sm text-white/75">
-          <li><a href="https://wa.me/5511992349916" target="_blank" rel="noopener noreferrer" class="transition hover:text-white">WhatsApp: (11) 99234-9916</a></li>
+        <ul class="mt-4 space-y-3 text-sm text-white/80">
+          <li class="flex items-center gap-2">
+            <svg class="h-4 w-4 text-white/60" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+            </svg>
+            <a href="https://wa.me/5511992349916" target="_blank" rel="noopener noreferrer" class="transition hover:text-white">(11) 99234-9916</a>
+          </li>
+          <li class="flex items-center gap-2">
+            <svg class="h-4 w-4 text-white/60" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"></path>
+            </svg>
+            <span>Itatiba - SP</span>
+          </li>
+          <li class="flex items-center gap-2">
+            <svg class="h-4 w-4 text-white/60" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+            <span>Seg - Sab (flexível)</span>
+          </li>
         </ul>
       </div>
-      <div>
+
+      <div class="space-y-3">
         <h3 class="text-sm font-bold uppercase tracking-wide text-white">Navegação</h3>
-        <ul class="mt-3 space-y-2 text-sm text-white/75">
-          <li><a href="#servicos" class="transition hover:text-white">Serviços</a></li>
-          <li><a href="#diferenciais" class="transition hover:text-white">Diferenciais</a></li>
-          <li><a href="#faq" class="transition hover:text-white">Perguntas frequentes</a></li>
-          <li><a href="#topo" class="transition hover:text-white">Voltar ao topo</a></li>
+        <ul class="mt-4 space-y-2 text-sm text-white/80">
+          <li><a href="#topo" class="transition hover:text-white hover:translate-x-1 inline-flex items-center gap-1">↑ Topo</a></li>
+          <li><a href="#servicos" class="transition hover:text-white hover:translate-x-1 inline-flex items-center gap-1">→ Serviços</a></li>
+          <li><a href="#diferenciais" class="transition hover:text-white hover:translate-x-1 inline-flex items-center gap-1">→ Diferenciais</a></li>
+          <li><a href="#faq" class="transition hover:text-white hover:translate-x-1 inline-flex items-center gap-1">→ FAQ</a></li>
         </ul>
       </div>
     </div>
-    <div class="mx-auto mt-8 w-[92vw] max-w-6xl border-t border-white/15 pt-5 text-center text-xs text-white/65">
-      <div class="flex flex-wrap items-center justify-center gap-2">
-        <button id="devInfoToggle" type="button" aria-expanded="false" aria-controls="devPanel" class="inline-flex h-5 w-5 items-center justify-center rounded-full border border-white/50 text-[11px] font-bold text-white transition hover:bg-white/15">!</button>
-        <p>Desenvolvido por Pedro Henrique Ribeiro.</p>
+
+    <div class="mx-auto w-[92vw] max-w-6xl border-t border-white/15 pt-8">
+      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-4 pb-4 border-b border-white/10">
+        <p class="text-xs text-white/70">© 2026 Fatima Conceição Diniz Martins da Costa • Cuidadora de Idosos em Itatiba-SP</p>
+        <div class="flex items-center gap-3">
+          <span class="text-xs font-semibold text-white/80">Desenvolvido por <a href="https://wa.me/5511992349916?text=Olá%20Pedro%20Henrique%20Ribeiro%2C%20vim%20pelo%20site%20e%20gostaria%20de%20falar%20sobre%20desenvolvimento." target="_blank" rel="noopener noreferrer" class="text-white hover:text-white/80 transition font-bold">Pedro Henrique Ribeiro</a></span>
+          <button onclick="openContactDeveloperModal()" class="inline-flex h-7 w-7 items-center justify-center rounded-full border border-white/40 text-xs font-bold text-white hover:bg-white/10 hover:border-white/60 transition" aria-label="Fale com Pedro">✓</button>
+        </div>
       </div>
-      <div id="devPanel" class="dev-panel mx-auto mt-2 w-full max-w-xl">
-        <form id="devContactForm" class="mx-auto rounded-xl border border-white/20 bg-white/10 p-3 text-left">
-          <label class="block text-[11px] font-semibold text-white/90">
-            Seu nome
-            <input id="devNome" type="text" class="mt-1 w-full rounded-lg border border-white/25 bg-white/90 px-2.5 py-1.5 text-xs text-ink outline-none" placeholder="Digite seu nome" />
-          </label>
-          <label class="mt-2 block text-[11px] font-semibold text-white/90">
-            Mensagem
-            <input id="devMensagem" type="text" class="mt-1 w-full rounded-lg border border-white/25 bg-white/90 px-2.5 py-1.5 text-xs text-ink outline-none" value="Olá Pedro Henrique Ribeiro, vim pelo site e gostaria de falar sobre desenvolvimento." />
-          </label>
-          <button type="submit" class="mt-3 inline-flex items-center justify-center rounded-lg bg-white px-3 py-1.5 text-xs font-bold text-[#30423d] transition hover:bg-white/90">Enviar para WhatsApp do Desenvolvedor</button>
-        </form>
-      </div>
-      <p>2026 Fatima Conceição Diniz Martins da Costa - Cuidadora de Idosos em Itatiba-SP. Todos os direitos reservados.</p>
+      <p class="text-center text-xs text-white/60">Todos os direitos reservados.</p>
     </div>
   </footer>
 
