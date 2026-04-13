@@ -4,12 +4,59 @@ const menuToggle = document.getElementById('menuToggle');
 const menu = document.getElementById('mainMenu');
 const scrollBar = document.getElementById('scrollBar');
 const whatsappForm = document.getElementById('whatsappForm');
+const selectedPlanInput = document.getElementById('planoSelecionado');
+const selectPlanButtons = document.querySelectorAll('.select-plan-btn');
 const header = document.getElementById('topo');
 const faqItems = document.querySelectorAll('.faq-item');
-const anchorLinks = document.querySelectorAll('a[href^="#"]');
 const devInfoToggle = document.getElementById('devInfoToggle');
 const devPanel = document.getElementById('devPanel');
 const devContactForm = document.getElementById('devContactForm');
+let isProgrammaticScroll = false;
+
+// Resolve o alvo de um hash interno
+const resolveHashTarget = (hash) => {
+  if (!hash || !hash.startsWith('#') || hash === '#') return null;
+  return document.getElementById(decodeURIComponent(hash.slice(1)));
+};
+
+// Rola suavemente para uma seção, compensando o header fixo
+const scrollToSection = (hash, options = {}) => {
+  const { updateHistory = false, duration = 0.72 } = options;
+  const target = resolveHashTarget(hash);
+  if (!target) return;
+
+  const headerH = header ? header.offsetHeight : 0;
+  const destination = Math.max(
+    target.getBoundingClientRect().top + window.scrollY - headerH - 12,
+    0
+  );
+
+  isProgrammaticScroll = true;
+
+  const done = () => {
+    isProgrammaticScroll = false;
+    if (updateHistory && window.location.hash !== hash) {
+      history.pushState(null, '', hash);
+    }
+  };
+
+  const g = window.gsap;
+  const p = window.ScrollToPlugin;
+
+  if (g && p) {
+    g.registerPlugin(p);
+    g.killTweensOf(window);
+    g.to(window, {
+      duration,
+      scrollTo: { y: destination, autoKill: false },
+      ease: 'power2.inOut',
+      onComplete: done
+    });
+  } else {
+    window.scrollTo({ top: destination, behavior: 'smooth' });
+    setTimeout(done, 700);
+  }
+};
 
 const revealObserver = new IntersectionObserver(
   (entries, observer) => {
@@ -160,22 +207,28 @@ if (faqItems.length > 0) {
 }
 
 if (whatsappForm) {
+  if (selectedPlanInput && !selectedPlanInput.value.trim()) {
+    selectedPlanInput.value = 'Nenhum';
+  }
+
   whatsappForm.addEventListener('submit', (event) => {
     event.preventDefault();
 
-    const nome = (document.getElementById('nome')?.value || '').trim();
-    const telefone = (document.getElementById('telefone')?.value || '').trim();
-    const parentesco = (document.getElementById('parentesco')?.value || '').trim();
-    const periodo = (document.getElementById('periodo')?.value || 'A combinar').trim();
-    const mensagemExtra = (document.getElementById('mensagem')?.value || '').trim();
+    const nome             = (document.getElementById('nome')?.value || '').trim();
+    const telefone         = (document.getElementById('telefone')?.value || '').trim();
+    const parentesco       = (document.getElementById('parentesco')?.value || '').trim();
+    const periodo          = (document.getElementById('periodo')?.value || 'A combinar').trim();
+    const planoSelecionado = (selectedPlanInput?.value || 'Nenhum').trim() || 'Nenhum';
+    const mensagemExtra    = (document.getElementById('mensagem')?.value || '').trim();
 
     const linhas = [
-      'Olá Fatima, vim pelo site e gostaria de um atendimento.',
-      `Nome: ${nome || 'Não informado'}`,
-      `Telefone: ${telefone || 'Não informado'}`,
-      `Parentesco: ${parentesco || 'Não informado'}`,
-      `Período desejado: ${periodo}`,
-      `Detalhes: ${mensagemExtra || 'Sem detalhes adicionais.'}`
+      ' • Olá Fatima, vim pelo site e gostaria de um atendimento.',
+      ` • Plano escolhido:  ${planoSelecionado}`,
+      ` • Nome:             ${nome || 'Não informado'}`,
+      ` • Telefone:         ${telefone || 'Não informado'}`,
+      ` • Parentesco:       ${parentesco || 'Não informado'}`,
+      ` • Período desejado: ${periodo}`,
+      ` • Detalhes:         ${mensagemExtra || 'Sem detalhes adicionais.'}`
     ];
 
     const texto = encodeURIComponent(linhas.join('\n'));
@@ -184,41 +237,49 @@ if (whatsappForm) {
   });
 }
 
-// Animação de scroll com GSAP ao navegar para seções
-if (anchorLinks.length > 0) {
-  anchorLinks.forEach((link) => {
-    link.addEventListener('click', (event) => {
-      const hash = link.getAttribute('href');
-      if (!hash || hash === '#') return;
-
-      const target = document.querySelector(hash);
-      if (!target) return;
-
-      event.preventDefault();
-
-      const headerOffset = header ? header.offsetHeight : 0;
-      const extraOffset = 26;
-      const y = target.getBoundingClientRect().top + window.pageYOffset - headerOffset - extraOffset;
-
-      // Anima scroll com GSAP
-      gsap.to(window, {
-        duration: 0.8,
-        scrollTo: { y: Math.max(y, 0), autoKill: true },
-        ease: "power2.inOut",
-        onComplete: () => {
-          // Re-anima elementos reveal da seção alvo quando termina o scroll
-          const sectionRevealElements = target.querySelectorAll('.reveal');
-          sectionRevealElements.forEach((el) => {
-            el.classList.remove('in-view');
-            revealObserver.observe(el);
-          });
-        }
-      });
-
-      history.pushState(null, '', hash);
+if (selectedPlanInput && selectPlanButtons.length > 0) {
+  selectPlanButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      const planName = (button.dataset.plan || '').trim();
+      selectedPlanInput.value = planName || 'Nenhum';
+      scrollToSection('#contato', { updateHistory: true, duration: 0.75 });
+      selectedPlanInput.focus({ preventScroll: true });
     });
   });
 }
+
+// Handler global de navegação por âncoras
+document.addEventListener('click', (event) => {
+  const source = event.target;
+  if (!(source instanceof Element)) return;
+
+  const link = source.closest('a[href]');
+  if (!link) return;
+
+  const rawHref = (link.getAttribute('href') || '').trim();
+  if (!rawHref.startsWith('#') || rawHref === '#') return;
+
+  const target = resolveHashTarget(rawHref);
+  if (!target) return;
+
+  event.preventDefault();
+  scrollToSection(rawHref, { updateHistory: true, duration: 0.72 });
+
+  if (menu && menu.classList.contains('open') && window.innerWidth < 768) {
+    menu.classList.remove('open');
+    if (menuToggle) {
+      menuToggle.classList.remove('open');
+      menuToggle.setAttribute('aria-expanded', 'false');
+    }
+  }
+});
+
+window.addEventListener('load', () => {
+  if (!window.location.hash) return;
+  window.setTimeout(() => {
+    scrollToSection(window.location.hash, { updateHistory: false, duration: 0.55 });
+  }, 80);
+});
 
 if (devInfoToggle && devPanel) {
   devInfoToggle.addEventListener('click', () => {

@@ -9,10 +9,26 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGkJpeuKQ6XLRfqpZjSuuYQvp1VSqNnu7nUlwXchNErvX2zLW5UZzYw+fJ1yFS27yTtEqrqAtwGmozSAg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css" />
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
+  <script>
+    // Fallback em caso de bloqueio/indisponibilidade do CDN principal
+    (function ensureGsap() {
+      if (window.gsap && window.ScrollToPlugin) return;
+
+      const gsapFallback = document.createElement('script');
+      gsapFallback.src = 'https://cdn.jsdelivr.net/npm/gsap@3.12.2/dist/gsap.min.js';
+      gsapFallback.onload = function () {
+        if (window.ScrollToPlugin) return;
+        const pluginFallback = document.createElement('script');
+        pluginFallback.src = 'https://cdn.jsdelivr.net/npm/gsap@3.12.2/dist/ScrollToPlugin.min.js';
+        document.head.appendChild(pluginFallback);
+      };
+      document.head.appendChild(gsapFallback);
+    })();
+  </script>
   <script>
     tailwind.config = {
       theme: {
@@ -37,7 +53,7 @@
   </script>
   <style>
     html {
-      scroll-behavior: smooth;
+      /* scroll-behavior gerenciado pelo GSAP */
     }
 
     body {
@@ -190,13 +206,12 @@
       </a>
 
       <button id="menuToggle" class="menu-toggle inline-flex h-11 w-11 items-center justify-center rounded-lg border border-ink/10 bg-white/70 transition hover:bg-white md:hidden" aria-label="Abrir menu" aria-expanded="false" aria-controls="mainMenu">
-        <svg xmlns="http://www.w3.org/2000/svg" class="menu-toggle-icon h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M4 7h16M4 12h16M4 17h16" />
-        </svg>
+        <i class="fa-solid fa-bars menu-toggle-icon h-6 w-6"></i>
       </button>
 
       <nav id="mainMenu" class="mobile-menu absolute left-4 right-4 top-20 flex flex-col gap-2 rounded-2xl border border-ink/10 bg-white/95 p-4 shadow-soft md:static md:flex md:flex-row md:items-center md:gap-6 md:border-0 md:bg-transparent md:p-0 md:shadow-none">
         <a href="#servicos" class="rounded-lg px-2 py-1 text-sm font-semibold text-ink/80 transition hover:bg-brand/10 hover:text-brand md:p-0 md:hover:bg-transparent">Servicos</a>
+        <a href="#planos" class="rounded-lg px-2 py-1 text-sm font-semibold text-ink/80 transition hover:bg-brand/10 hover:text-brand md:p-0 md:hover:bg-transparent">Planos</a>
         <a href="#diferenciais" class="rounded-lg px-2 py-1 text-sm font-semibold text-ink/80 transition hover:bg-brand/10 hover:text-brand md:p-0 md:hover:bg-transparent">Diferenciais</a>
         <a href="#faq" class="rounded-lg px-2 py-1 text-sm font-semibold text-ink/80 transition hover:bg-brand/10 hover:text-brand md:p-0 md:hover:bg-transparent">FAQ</a>
         <a href="#contato" class="mt-1 inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-brand to-brandSoft px-4 py-2 text-sm font-bold text-white shadow-lg shadow-brand/20 transition hover:-translate-y-0.5 hover:brightness-105 md:mt-0">Agendar Conversa</a>
@@ -253,10 +268,7 @@
           <article class="card-hover reveal overflow-hidden rounded-3xl border border-white/80 bg-gradient-to-br from-white to-brand/5 p-6 shadow-soft group relative">
             <span class="absolute top-4 right-4 inline-flex rounded-full bg-gradient-to-r from-brand to-brandSoft px-3 py-1 text-xs font-bold text-white">Destaque</span>
             <div class="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-brand/10 to-brandSoft/10 group-hover:from-brand/20 group-hover:to-brandSoft/20 transition-all">
-              <svg class="h-7 w-7 text-brand" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <circle cx="12" cy="12" r="10"></circle>
-                <polyline points="12 6 12 12 16 14"></polyline>
-              </svg>
+              <i class="fa-solid fa-user-nurse text-brand text-2xl"></i>
             </div>
             <h3 class="mt-4 text-lg font-bold text-ink">Cuidadora 24h</h3>
             <p class="mt-3 text-sm text-ink/70 leading-relaxed">Atendimento integral disponível 24 horas para garantir segurança e bem-estar contínuo do idoso, com presença constante e responsável.</p>
@@ -266,10 +278,7 @@
 
           <article class="card-hover reveal overflow-hidden rounded-3xl border border-white/80 bg-gradient-to-br from-white to-blue/5 p-6 shadow-soft group">
             <div class="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-brand/10 to-brandSoft/10 group-hover:from-brand/20 group-hover:to-brandSoft/20 transition-all">
-              <svg class="h-7 w-7 text-brand" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <circle cx="12" cy="12" r="10"></circle>
-                <polyline points="12 6 12 12 16 14"></polyline>
-              </svg>
+              <i class="fa-solid fa-person-walking text-brand text-2xl"></i>
             </div>
             <h3 class="mt-4 text-lg font-bold text-ink">Companhia para lazer</h3>
             <p class="mt-3 text-sm text-ink/70 leading-relaxed">Passeios, leitura, jogos e atividades recreativas para manter a autonomia, cognição e bem-estar emocional do idoso.</p>
@@ -279,10 +288,7 @@
 
           <article class="card-hover reveal overflow-hidden rounded-3xl border border-white/80 bg-gradient-to-br from-white to-emerald/5 p-6 shadow-soft group">
             <div class="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-brand/10 to-brandSoft/10 group-hover:from-brand/20 group-hover:to-brandSoft/20 transition-all">
-              <svg class="h-7 w-7 text-brand" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <circle cx="12" cy="12" r="10"></circle>
-                <polyline points="12 6 12 12 16 14"></polyline>
-              </svg>
+              <i class="fa-solid fa-bed-pulse text-brand text-2xl"></i>
             </div>
             <h3 class="mt-4 text-lg font-bold text-ink">Aluguel de camas hospitalares</h3>
             <p class="mt-3 text-sm text-ink/70 leading-relaxed">Fornecimento e suporte técnico de camas hospitalares de qualidade para maior conforto e segurança do idoso.</p>
@@ -292,10 +298,7 @@
 
           <article class="card-hover reveal overflow-hidden rounded-3xl border border-white/80 bg-gradient-to-br from-white to-purple/5 p-6 shadow-soft group">
             <div class="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-brand/10 to-brandSoft/10 group-hover:from-brand/20 group-hover:to-brandSoft/20 transition-all">
-              <svg class="h-7 w-7 text-brand" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <circle cx="12" cy="12" r="10"></circle>
-                <polyline points="12 6 12 12 16 14"></polyline>
-              </svg>
+              <i class="fa-solid fa-brain text-brand text-2xl"></i>
             </div>
             <h3 class="mt-4 text-lg font-bold text-ink">Apoio psicológico</h3>
             <p class="mt-3 text-sm text-ink/70 leading-relaxed">Suporte emocional e escuta atenta para lidar com ansiedade, depressão e questões psicológicas comuns na terceira idade.</p>
@@ -305,10 +308,7 @@
 
           <article class="card-hover reveal overflow-hidden rounded-3xl border border-white/80 bg-gradient-to-br from-white to-orange/5 p-6 shadow-soft group">
             <div class="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-brand/10 to-brandSoft/10 group-hover:from-brand/20 group-hover:to-brandSoft/20 transition-all">
-              <svg class="h-7 w-7 text-brand" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <circle cx="12" cy="12" r="10"></circle>
-                <polyline points="12 6 12 12 16 14"></polyline>
-              </svg>
+              <i class="fa-solid fa-heart-circle-plus text-brand text-2xl"></i>
             </div>
             <h3 class="mt-4 text-lg font-bold text-ink">Cuidados paliativos</h3>
             <p class="mt-3 text-sm text-ink/70 leading-relaxed">Atendimento humanizado e compassivo focado em qualidade de vida, conforto e dignidade nos últimos momentos.</p>
@@ -318,10 +318,7 @@
 
           <article class="card-hover reveal overflow-hidden rounded-3xl border border-white/80 bg-gradient-to-br from-white to-pink/5 p-6 shadow-soft group">
             <div class="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-brand/10 to-brandSoft/10 group-hover:from-brand/20 group-hover:to-brandSoft/20 transition-all">
-              <svg class="h-7 w-7 text-brand" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <circle cx="12" cy="12" r="10"></circle>
-                <polyline points="12 6 12 12 16 14"></polyline>
-              </svg>
+              <i class="fa-solid fa-calendar-check text-brand text-2xl"></i>
             </div>
             <h3 class="mt-4 text-lg font-bold text-ink">Atendimento flexível</h3>
             <p class="mt-3 text-sm text-ink/70 leading-relaxed">Planos avulsos, periódicos ou contínuos com horários totalmente adaptados à rotina e necessidade da família.</p>
@@ -331,6 +328,80 @@
         </div>
       </div>
     </section>
+
+    <section id="planos" class="bg-gradient-to-br from-white/40 to-brand/5 py-20">
+      <div class="mx-auto w-[92vw] max-w-6xl">
+        <div class="reveal mb-12 text-center max-w-2xl mx-auto">
+          <p class="mb-3 inline-flex rounded-full border border-brand/20 bg-white/70 px-4 py-1 text-xs font-bold uppercase tracking-wide text-brand">Planos</p>
+          <h2 class="font-title text-5xl leading-tight mb-3">Escolha o plano ideal para sua família</h2>
+          <p class="text-lg text-ink/60">Selecione um plano para ir direto ao contato com o campo preenchido automaticamente.</p>
+        </div>
+
+        <div class="grid gap-6 lg:grid-cols-3">
+          <article class="card-hover reveal flex flex-col rounded-3xl border border-white/80 bg-white p-7 shadow-soft">
+            <div class="mb-4 flex items-center justify-between gap-3">
+              <h3 class="font-title text-4xl leading-none">Plano Basico</h3>
+              <span class="inline-flex items-center rounded-full border border-ink/15 bg-ink/5 px-3 py-1 text-xs font-bold uppercase text-ink/70">Essencial</span>
+            </div>
+            <p class="text-sm text-ink/70 leading-relaxed">Pensado para quem busca equilibrio entre vida pessoal e cuidados com o idoso de forma mais economica.</p>
+            <ul class="mt-5 space-y-2 text-sm text-ink/80">
+              <li><i class="fa-solid fa-check text-brand mr-2"></i>Cuidadora 24h</li>
+              <li><i class="fa-solid fa-check text-brand mr-2"></i>Relatorios para as familias</li>
+              <li><i class="fa-solid fa-check text-brand mr-2"></i>Administracao de medicamentos</li>
+              <li><i class="fa-solid fa-check text-brand mr-2"></i>Companhia para lazer (passeios, leitura, jogos)</li>
+            </ul>
+            <div class="mt-auto pt-5 rounded-2xl border border-brand/20 bg-brand/5 p-4">
+              <p class="text-xs font-semibold uppercase tracking-wide text-brand/80">Valor estimado</p>
+              <p class="mt-1 text-xl font-extrabold text-ink">R$ 12.000,00 / mes</p>
+            </div>
+            <button type="button" class="select-plan-btn mt-6 inline-flex w-full items-center justify-center rounded-xl bg-gradient-to-r from-brand to-brandSoft px-4 py-3 text-sm font-bold text-white transition hover:brightness-105" data-plan="Basico">
+              Escolher Basico
+            </button>
+          </article>
+
+          <article class="card-hover reveal flex flex-col rounded-3xl border border-blue-200 bg-gradient-to-br from-white to-blue-50 p-7 shadow-soft">
+            <div class="mb-4 flex items-center justify-between gap-3">
+              <h3 class="font-title text-4xl leading-none">Plano <span class="text-blue-700">Plus+</span></h3>
+              <span class="inline-flex items-center rounded-full border border-blue-300 bg-blue-100 px-3 py-1 text-xs font-bold uppercase text-blue-700">Mais pedido</span>
+            </div>
+            <p class="text-sm text-ink/70 leading-relaxed">Para quem precisa de praticidade e encontra tudo em um so lugar.</p>
+            <ul class="mt-5 space-y-2 text-sm text-ink/80">
+              <li><i class="fa-solid fa-check text-blue-700 mr-2"></i>Inclui tudo do Basico</li>
+              <li><i class="fa-solid fa-plus text-blue-700 mr-2"></i>Pagamento para as cuidadoras</li>
+              <li><i class="fa-solid fa-plus text-blue-700 mr-2"></i>Cuidadoras com tecnico em cuidados</li>
+              <li><i class="fa-solid fa-plus text-blue-700 mr-2"></i>Aluguel de camas hospitalares</li>
+              <li><i class="fa-solid fa-plus text-blue-700 mr-2"></i>Apoio psicologico</li>
+              <li><i class="fa-solid fa-plus text-blue-700 mr-2"></i>Fisioterapia</li>
+            </ul>
+            <div class="mt-auto pt-5 rounded-2xl border border-blue-300 bg-blue-100/70 p-4">
+              <p class="text-xs font-semibold uppercase tracking-wide text-blue-700">Valor estimado</p>
+              <p class="mt-1 text-xl font-extrabold text-ink">R$ 13.200,00 / mes</p>
+            </div>
+            <button type="button" class="select-plan-btn mt-6 inline-flex w-full items-center justify-center rounded-xl bg-blue-700 px-4 py-3 text-sm font-bold text-white transition hover:bg-blue-800" data-plan="Plus+">
+              Escolher Plus+
+            </button>
+          </article>
+
+          <article class="card-hover reveal flex flex-col rounded-3xl border border-white/80 bg-white p-7 shadow-soft">
+            <div class="mb-4 flex items-center justify-between gap-3">
+              <h3 class="font-title text-4xl leading-none">Plano Style</h3>
+              <span class="inline-flex items-center rounded-full border border-ink/15 bg-ink/5 px-3 py-1 text-xs font-bold uppercase text-ink/70">Premium</span>
+            </div>
+            <p class="text-sm text-ink/70 leading-relaxed">Para quem valoriza exatidao e quer acompanhamento completo com mais comodidade.</p>
+            <ul class="mt-5 space-y-2 text-sm text-ink/80">
+              <li><i class="fa-solid fa-check text-brand mr-2"></i>Inclui tudo do Plus+</li>
+              <li><i class="fa-solid fa-plus text-brand mr-2"></i>Compras para o paciente</li>
+              <li><i class="fa-solid fa-plus text-brand mr-2"></i>Agendamento de consultas</li>
+            </ul>
+            <div class="mt-auto pt-5 rounded-2xl border border-brand/20 bg-brand/5 p-4">
+              <p class="text-xs font-semibold uppercase tracking-wide text-brand/80">Valor estimado</p>
+              <p class="mt-1 text-xl font-extrabold text-ink">R$ 13.400,00 / mes</p>
+            </div>
+            <button type="button" class="select-plan-btn mt-6 inline-flex w-full items-center justify-center rounded-xl bg-gradient-to-r from-brand to-brandSoft px-4 py-3 text-sm font-bold text-white transition hover:brightness-105" data-plan="Style">
+              Escolher Style
+            </button>
+          </article>
+        </div>
       </div>
     </section>
 
@@ -345,9 +416,7 @@
         <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-4 mb-12">
           <article class="card-hover reveal overflow-hidden rounded-3xl border border-white/80 bg-gradient-to-br from-white to-emerald/5 p-6 shadow-soft group">
             <div class="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-emerald/10 to-emerald/5 group-hover:from-emerald/20 group-hover:to-emerald/15 transition-all">
-              <svg class="h-6 w-6 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-              </svg>
+              <i class="fa-solid fa-shield-heart text-emerald-600 text-xl"></i>
             </div>
             <h3 class="mt-4 text-sm font-bold text-ink">Postura ética</h3>
             <p class="mt-2 text-xs text-ink/70 leading-relaxed">Discreta, pontual e responsável em todas as situações.</p>
@@ -355,9 +424,7 @@
 
           <article class="card-hover reveal overflow-hidden rounded-3xl border border-white/80 bg-gradient-to-br from-white to-blue/5 p-6 shadow-soft group">
             <div class="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-blue/10 to-blue/5 group-hover:from-blue/20 group-hover:to-blue/15 transition-all">
-              <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m0 0l-2-1m2 1v2.5M14 4l-2 1m0 0l-2-1m2 1v2.5"></path>
-              </svg>
+              <i class="fa-solid fa-sliders text-blue-600 text-xl"></i>
             </div>
             <h3 class="mt-4 text-sm font-bold text-ink">Plano adaptado</h3>
             <p class="mt-2 text-xs text-ink/70 leading-relaxed">Cuidado personalizado para cada família.</p>
@@ -365,9 +432,7 @@
 
           <article class="card-hover reveal overflow-hidden rounded-3xl border border-white/80 bg-gradient-to-br from-white to-purple/5 p-6 shadow-soft group">
             <div class="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-purple/10 to-purple/5 group-hover:from-purple/20 group-hover:to-purple/15 transition-all">
-              <svg class="h-6 w-6 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"></path>
-              </svg>
+              <i class="fa-solid fa-comments text-purple-600 text-xl"></i>
             </div>
             <h3 class="mt-4 text-sm font-bold text-ink">Relatos contínuos</h3>
             <p class="mt-2 text-xs text-ink/70 leading-relaxed">Comunicação permanente sobre evolução.</p>
@@ -375,9 +440,7 @@
 
           <article class="card-hover reveal overflow-hidden rounded-3xl border border-white/80 bg-gradient-to-br from-white to-rose/5 p-6 shadow-soft group">
             <div class="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-rose/10 to-rose/5 group-hover:from-rose/20 group-hover:to-rose/15 transition-all">
-              <svg class="h-6 w-6 text-rose-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path d="M12 8v4m0 4v.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-              </svg>
+              <i class="fa-solid fa-user-shield text-rose-600 text-xl"></i>
             </div>
             <h3 class="mt-4 text-sm font-bold text-ink">Segurança ativa</h3>
             <p class="mt-2 text-xs text-ink/70 leading-relaxed">Presença constante para reduzir riscos.</p>
@@ -387,9 +450,7 @@
         <div class="grid gap-6 md:grid-cols-3">
           <article class="card-hover reveal overflow-hidden rounded-3xl border border-white/80 bg-gradient-to-br from-white to-orange/5 p-8 shadow-soft group">
             <div class="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-orange/10 to-orange/5 group-hover:from-orange/20 group-hover:to-orange/15 transition-all">
-              <svg class="h-7 w-7 text-orange-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path d="M8 12h.01M12 12h.01M16 12h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-              </svg>
+              <i class="fa-solid fa-handshake-angle text-orange-600 text-2xl"></i>
             </div>
             <h3 class="mt-5 text-lg font-bold text-ink">Etapa 1</h3>
             <p class="mt-2 font-semibold text-brand text-sm mb-2">Conversa inicial</p>
@@ -398,9 +459,7 @@
 
           <article class="card-hover reveal overflow-hidden rounded-3xl border border-white/80 bg-gradient-to-br from-white to-cyan/5 p-8 shadow-soft group">
             <div class="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-cyan/10 to-cyan/5 group-hover:from-cyan/20 group-hover:to-cyan/15 transition-all">
-              <svg class="h-7 w-7 text-cyan-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
-              </svg>
+              <i class="fa-solid fa-clipboard-list text-cyan-600 text-2xl"></i>
             </div>
             <h3 class="mt-5 text-lg font-bold text-ink">Etapa 2</h3>
             <p class="mt-2 font-semibold text-brand text-sm mb-2">Plano personalizado</p>
@@ -409,9 +468,7 @@
 
           <article class="card-hover reveal overflow-hidden rounded-3xl border border-white/80 bg-gradient-to-br from-white to-teal/5 p-8 shadow-soft group">
             <div class="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-teal/10 to-teal/5 group-hover:from-teal/20 group-hover:to-teal/15 transition-all">
-              <svg class="h-7 w-7 text-teal-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
-              </svg>
+              <i class="fa-solid fa-chart-line text-teal-600 text-2xl"></i>
             </div>
             <h3 class="mt-5 text-lg font-bold text-ink">Etapa 3</h3>
             <p class="mt-2 font-semibold text-brand text-sm mb-2">Acompanhamento contínuo</p>
@@ -431,10 +488,7 @@
         <div class="grid gap-6 md:grid-cols-3">
           <article class="card-hover reveal overflow-hidden rounded-3xl border border-white/80 bg-gradient-to-br from-white to-blue/5 p-8 shadow-soft group">
             <div class="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-blue/10 to-blue/5 group-hover:from-blue/20 group-hover:to-blue/15 transition-all">
-              <svg class="h-7 w-7 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"></path>
-                <path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-              </svg>
+              <i class="fa-solid fa-location-dot text-blue-600 text-2xl"></i>
             </div>
             <h3 class="mt-5 text-lg font-bold">Cidade base</h3>
             <p class="mt-2 text-xl font-bold text-brand">Itatiba - SP</p>
@@ -443,9 +497,7 @@
 
           <article class="card-hover reveal overflow-hidden rounded-3xl border border-white/80 bg-gradient-to-br from-white to-amber/5 p-8 shadow-soft group">
             <div class="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-amber/10 to-amber/5 group-hover:from-amber/20 group-hover:to-amber/15 transition-all">
-              <svg class="h-7 w-7 text-amber-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-              </svg>
+              <i class="fa-regular fa-clock text-amber-600 text-2xl"></i>
             </div>
             <h3 class="mt-5 text-lg font-bold">Horários</h3>
             <p class="mt-2 text-xl font-bold text-brand">Seg a Sab</p>
@@ -454,9 +506,7 @@
 
           <article class="card-hover reveal overflow-hidden rounded-3xl border border-white/80 bg-gradient-to-br from-white to-green/5 p-8 shadow-soft group">
             <div class="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-green/10 to-green/5 group-hover:from-green/20 group-hover:to-green/15 transition-all">
-              <svg class="h-7 w-7 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-              </svg>
+              <i class="fa-brands fa-whatsapp text-green-600 text-2xl"></i>
             </div>
             <h3 class="mt-5 text-lg font-bold">Contato rápido</h3>
             <p class="mt-2 text-sm font-bold text-green-600">Resposta via WhatsApp</p>
@@ -475,37 +525,40 @@
         </div>
         <div class="grid gap-6 md:grid-cols-3">
           <blockquote class="card-hover reveal overflow-hidden rounded-3xl border border-white/80 bg-gradient-to-br from-white to-yellow/5 p-8 shadow-soft group relative">
-            <div class="flex gap-1 mb-4">
-              <svg class="h-5 w-5 text-yellow-400 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-              <svg class="h-5 w-5 text-yellow-400 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-              <svg class="h-5 w-5 text-yellow-400 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-              <svg class="h-5 w-5 text-yellow-400 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+            <div class="flex gap-1 mb-4 text-yellow-400">
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
             </div>
-            <svg class="h-8 w-8 text-yellow-200 mb-3" fill="currentColor" viewBox="0 0 24 24"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-4.357-2-7-2s-7 .75-7 2v8c0 1-4 8 7 8z"></path><path d="M15.698 21c0 0 9 0 9-8V5c0-1.25-4.357-2-7-2c-1.25 0-4.027.75-5.952 2c3.272-1.5 7.739-1.5 9.952 0c3 1.5 4 3 4 5v8c0 8-8.006 8-9 8z"></path></svg>
+            <i class="fa-solid fa-quote-left h-8 w-8 text-yellow-200 mb-3 text-3xl"></i>
             <p class="text-sm text-ink/70 leading-relaxed italic">"A Fatima trouxe tranquilidade para nossa família. Atendimento impecável e muito humano."</p>
             <cite class="mt-5 block text-sm font-bold not-italic text-brand">Família Souza</cite>
           </blockquote>
 
           <blockquote class="card-hover reveal overflow-hidden rounded-3xl border border-white/80 bg-gradient-to-br from-white to-orange/5 p-8 shadow-soft group relative">
-            <div class="flex gap-1 mb-4">
-              <svg class="h-5 w-5 text-yellow-400 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-              <svg class="h-5 w-5 text-yellow-400 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-              <svg class="h-5 w-5 text-yellow-400 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-              <svg class="h-5 w-5 text-yellow-400 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+            <div class="flex gap-1 mb-4 text-yellow-400">
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
             </div>
-            <svg class="h-8 w-8 text-orange-200 mb-3" fill="currentColor" viewBox="0 0 24 24"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-4.357-2-7-2s-7 .75-7 2v8c0 1-4 8 7 8z"></path><path d="M15.698 21c0 0 9 0 9-8V5c0-1.25-4.357-2-7-2c-1.25 0-4.027.75-5.952 2c3.272-1.5 7.739-1.5 9.952 0c3 1.5 4 3 4 5v8c0 8-8.006 8-9 8z"></path></svg>
+            <i class="fa-solid fa-quote-left h-8 w-8 text-orange-200 mb-3 text-3xl"></i>
             <p class="text-sm text-ink/70 leading-relaxed italic">"Profissional atenciosa, pontual e cuidadosa. Nossa rotina ficou mais organizada e segura."</p>
             <cite class="mt-5 block text-sm font-bold not-italic text-brand">Família Nascimento</cite>
           </blockquote>
 
           <blockquote class="card-hover reveal overflow-hidden rounded-3xl border border-white/80 bg-gradient-to-br from-white to-pink/5 p-8 shadow-soft group relative">
-            <div class="flex gap-1 mb-4">
-              <svg class="h-5 w-5 text-yellow-400 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-              <svg class="h-5 w-5 text-yellow-400 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-              <svg class="h-5 w-5 text-yellow-400 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-              <svg class="h-5 w-5 text-yellow-400 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+            <div class="flex gap-1 mb-4 text-yellow-400">
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
             </div>
-            <svg class="h-8 w-8 text-pink-200 mb-3" fill="currentColor" viewBox="0 0 24 24"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-4.357-2-7-2s-7 .75-7 2v8c0 1-4 8 7 8z"></path><path d="M15.698 21c0 0 9 0 9-8V5c0-1.25-4.357-2-7-2c-1.25 0-4.027.75-5.952 2c3.272-1.5 7.739-1.5 9.952 0c3 1.5 4 3 4 5v8c0 8-8.006 8-9 8z"></path></svg>
+            <i class="fa-solid fa-quote-left h-8 w-8 text-pink-200 mb-3 text-3xl"></i>
             <p class="text-sm text-ink/70 leading-relaxed italic">"Recomendo com confiança. Meu pai se sente acolhido e bem assistido todos os dias."</p>
             <cite class="mt-5 block text-sm font-bold not-italic text-brand">Família Almeida</cite>
           </blockquote>
@@ -525,9 +578,7 @@
             <button type="button" class="faq-trigger flex w-full items-center justify-between gap-4 text-left" aria-expanded="true">
               <div class="flex items-start gap-3 flex-1">
                 <div class="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-brand/10 group-hover:bg-brand/20 transition-colors flex-shrink-0 mt-1">
-                  <svg class="h-5 w-5 text-brand" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path d="M8 12h.01M12 12h.01M16 12h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                  </svg>
+                  <i class="fa-solid fa-circle-question h-5 w-5 text-brand"></i>
                 </div>
                 <span class="text-sm font-bold text-ink leading-normal">Como funciona o primeiro atendimento?</span>
               </div>
@@ -543,9 +594,7 @@
             <button type="button" class="faq-trigger flex w-full items-center justify-between gap-4 text-left" aria-expanded="false">
               <div class="flex items-start gap-3 flex-1">
                 <div class="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-blue-100 group-hover:bg-blue-200 transition-colors flex-shrink-0 mt-1">
-                  <svg class="h-5 w-5 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                  </svg>
+                  <i class="fa-solid fa-person-cane h-5 w-5 text-blue-600"></i>
                 </div>
                 <span class="text-sm font-bold text-ink leading-normal">Atende somente idosos acamados?</span>
               </div>
@@ -561,9 +610,7 @@
             <button type="button" class="faq-trigger flex w-full items-center justify-between gap-4 text-left" aria-expanded="false">
               <div class="flex items-start gap-3 flex-1">
                 <div class="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-100 group-hover:bg-emerald-200 transition-colors flex-shrink-0 mt-1">
-                  <svg class="h-5 w-5 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                  </svg>
+                  <i class="fa-solid fa-file-invoice-dollar h-5 w-5 text-emerald-600"></i>
                 </div>
                 <span class="text-sm font-bold text-ink leading-normal">Existe plano mensal? Como são os preços?</span>
               </div>
@@ -613,6 +660,15 @@
                     <option>A combinar</option>
                   </select>
                 </label>
+                <label class="text-sm font-semibold text-ink/80 sm:col-span-2">
+                  <span class="block mb-2">Plano escolhido</span>
+                  <select id="planoSelecionado" name="planoSelecionado" class="w-full rounded-xl border border-ink/15 px-4 py-2 text-sm font-semibold text-ink/75 outline-none transition focus:border-brand focus:ring-1 focus:ring-brand/20 bg-white">
+                    <option value="Nenhum">Nenhum</option>
+                    <option value="Basico">Plano Básico — R$ 12.000,00 / mês</option>
+                    <option value="Plus+">Plano Plus+ — R$ 13.200,00 / mês</option>
+                    <option value="Style">Plano Style — R$ 13.400,00 / mês</option>
+                  </select>
+                </label>
               </div>
 
               <label class="block text-sm font-semibold text-ink/80 mb-4">
@@ -621,9 +677,7 @@
               </label>
 
               <button type="submit" class="w-full inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-brand to-brandSoft px-6 py-3 text-sm font-bold text-white shadow-lg shadow-brand/30 transition hover:-translate-y-0.5 hover:brightness-105">
-                <svg class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                  <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-                </svg>
+                <i class="fa-brands fa-whatsapp h-5 w-5 mr-2"></i>
                 Enviar no WhatsApp
               </button>
             </form>
@@ -647,16 +701,12 @@
 
               <div class="grid grid-cols-2 gap-4">
                 <div class="rounded-3xl border border-white/80 bg-white p-6 shadow-soft hover:border-brand/30 transition">
-                  <svg class="h-6 w-6 text-brand mb-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-                  </svg>
+                  <i class="fa-brands fa-whatsapp h-6 w-6 text-brand mb-3"></i>
                   <p class="text-xs font-bold text-ink/60 uppercase mb-1">WhatsApp</p>
                   <p class="text-sm font-bold text-ink">(11) 99234-9916</p>
                 </div>
                 <div class="rounded-3xl border border-white/80 bg-white p-6 shadow-soft hover:border-brand/30 transition">
-                  <svg class="h-6 w-6 text-brand mb-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                  </svg>
+                  <i class="fa-regular fa-clock h-6 w-6 text-brand mb-3"></i>
                   <p class="text-xs font-bold text-ink/60 uppercase mb-1">Horário</p>
                   <p class="text-sm font-bold text-ink">Seg - Sab</p>
                 </div>
@@ -705,7 +755,6 @@
     <div class="mx-auto grid w-[92vw] max-w-6xl gap-10 md:grid-cols-2 lg:grid-cols-4 mb-8">
       <div class="space-y-3">
         <div class="flex items-center gap-3">
-          <span class="grid h-10 w-10 place-items-center rounded-xl bg-white/20 text-sm font-bold text-white">CC</span>
           <p class="font-semibold">Conce Care</p>
         </div>
         <p class="mt-3 text-sm text-white/80 leading-relaxed">Cuidadora de idosos com atendimento profissional, acolhedor e focado na dignidade da pessoa idosa em Itatiba-SP.</p>
@@ -726,21 +775,15 @@
         <h3 class="text-sm font-bold uppercase tracking-wide text-white">Contato</h3>
         <ul class="mt-4 space-y-3 text-sm text-white/80">
           <li class="flex items-center gap-2">
-            <svg class="h-4 w-4 text-white/60" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-            </svg>
+            <i class="fa-brands fa-whatsapp h-4 w-4 text-white/60"></i>
             <a href="https://wa.me/5511992349916" target="_blank" rel="noopener noreferrer" class="transition hover:text-white">(11) 99234-9916</a>
           </li>
           <li class="flex items-center gap-2">
-            <svg class="h-4 w-4 text-white/60" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"></path>
-            </svg>
+            <i class="fa-solid fa-location-dot h-4 w-4 text-white/60"></i>
             <span>Itatiba - SP</span>
           </li>
           <li class="flex items-center gap-2">
-            <svg class="h-4 w-4 text-white/60" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-            </svg>
+            <i class="fa-regular fa-clock h-4 w-4 text-white/60"></i>
             <span>Seg - Sab (flexível)</span>
           </li>
         </ul>
@@ -759,7 +802,7 @@
 
     <div class="mx-auto w-[92vw] max-w-6xl border-t border-white/15 pt-8">
       <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-4 pb-4 border-b border-white/10">
-        <p class="text-xs text-white/70">© 2026 Fatima Conceição Diniz Martins da Costa • Cuidadora de Idosos em Itatiba-SP</p>
+        <p class="text-xs text-white/70">© 2026 Conce Care • Cuidadora de Idosos em Itatiba-SP</p>
         <div class="flex items-center gap-3">
           <span class="text-xs font-semibold text-white/80">Desenvolvido por <a href="https://wa.me/5511992349916?text=Olá%20Pedro%20Henrique%20Ribeiro%2C%20vim%20pelo%20site%20e%20gostaria%20de%20falar%20sobre%20desenvolvimento." target="_blank" rel="noopener noreferrer" class="text-white hover:text-white/80 transition font-bold">Pedro Henrique Ribeiro</a></span>
           <button onclick="openContactDeveloperModal()" class="inline-flex h-7 w-7 items-center justify-center rounded-full border border-white/40 text-xs font-bold text-white hover:bg-white/10 hover:border-white/60 transition" aria-label="Fale com Pedro">✓</button>
@@ -770,9 +813,9 @@
   </footer>
 
   <a href="https://wa.me/5511992349916?text=Ola%20Fatima%2C%20vim%20pelo%20site%20e%20gostaria%20de%20informacoes." target="_blank" rel="noopener noreferrer" aria-label="Conversar no WhatsApp" class="floating-pulse fixed bottom-5 right-4 z-[75] inline-flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-xl shadow-black/20 transition hover:scale-105 hover:brightness-105 sm:right-6">
-    <img src="https://img.icons8.com/ios/100/FFFFFF/whatsapp--v1.png" alt="WhatsApp" class="h-7 w-7 object-contain" width="100" height="100" />
+    <i class="fa-brands fa-whatsapp text-3xl"></i>
   </a>
 
-  <script src="script.js"></script>
+  <script src="script.js?v=20260413"></script>
 </body>
 </html>
